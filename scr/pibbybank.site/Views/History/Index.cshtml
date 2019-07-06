@@ -1,0 +1,10 @@
+﻿@model IEnumerable<TransactionDto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@foreach (var item in Model)
+{
+    <div>@item.Amount</div>
+}
+
