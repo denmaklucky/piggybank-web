@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" asp-href-include="/lib/bootstrap/dist/**/*.min.css"
+          asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" asp-href-include="/css/*.css" />
+    <title>PiggyBank</title>
+</head>
+<body>
+    <div class="navbar navbar-dark hg-pink " role="navigation">
+        <a class="col navbar-brand" href="#">PiggyBank</a>
+    </div>
+    <div class="row m-1 p-1">
+        <div class="col-3"></div>
+        <div class="col-6">
+            @RenderBody()
+        </div>
+        <div class="col-3"></div>
+    </div>
+</body>
+</html>
