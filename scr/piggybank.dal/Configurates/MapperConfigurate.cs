@@ -1,6 +1,7 @@
 ﻿using piggybank.dal.DTO;
 using piggybank.dal.Models;
 using AutoMapper;
+using AutoMapper.Configuration;
 
 namespace piggybank.dal.Configurates
 {
@@ -8,16 +9,13 @@ namespace piggybank.dal.Configurates
     {
         public static void Configurate()
         {
-            var config = new MapperConfiguration(cfg => 
-            {
-                cfg.CreateMap<Transaction, TransactionDto>();
-                cfg.CreateMap<Account, AccountDto>();
-                cfg.CreateMap<Category, CategoryDto>();
-            });
+            var config = new MapperConfigurationExpression();
+            config.CreateMap<Transaction, TransactionDto>();
+            config.CreateMap<Account, AccountDto>();
+            config.CreateMap<Category, CategoryDto>();
 
-            Mapper = config.CreateMapper();
+            Mapper.Reset();
+            Mapper.Initialize(config);
         }
-
-        public static IMapper Mapper { get; set; }
     }
 }

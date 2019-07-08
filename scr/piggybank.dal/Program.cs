@@ -1,5 +1,4 @@
 ﻿using piggybank.dal.Configurates;
-using System;
 
 namespace piggybank.dal
 {

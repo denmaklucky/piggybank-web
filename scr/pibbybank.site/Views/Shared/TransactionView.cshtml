@@ -1,0 +1,19 @@
+﻿@model TransactionDto
+
+<div class="card m-1 p-1">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+            <div style="border-radius:70px;height:100px; width: margin: 0 auto; 100px;background:@Model.Category.HexColor;"></div>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Category.Title</h5>
+                <p class="card-text">@Model.Account.Title</p>
+                <p class="card-text"><smal class="text-muted">@Model.Comment</smal></p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <h5 class="card-text">@Model.Amount</h5>
+        </div>
+    </div>
+</div>

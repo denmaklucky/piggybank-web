@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using piggybank.dal.Contracts;
+using piggybank.site.Models.ViewModel;
+using System.Linq;
 
 namespace pibbybank.site.Controllers
 {
@@ -12,7 +14,15 @@ namespace pibbybank.site.Controllers
         }
         public IActionResult Index()
         {
-            return View(_repository.Transactions) ;
+            var transactionsInDay = _repository.Transactions
+                .GroupBy(t => t.CreatedOn.Date)
+                .Select(td => new TransactionsOfDay
+                {
+                    Date = td.Key,
+                    Transactions = td.ToList()
+                });
+
+            return View(new HistoryViewModel { TransactionsInDay = transactionsInDay });
         }
     }
 }

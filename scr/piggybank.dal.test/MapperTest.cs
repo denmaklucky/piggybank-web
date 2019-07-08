@@ -14,7 +14,7 @@ namespace piggybank.dal.test
         public void MapperConfigurateTest()
         {
             MapperConfigurate.Configurate();
-            var mapper = MapperConfigurate.Mapper;
+            var mapper = Mapper.Instance;
 
             #region Transaction
 
