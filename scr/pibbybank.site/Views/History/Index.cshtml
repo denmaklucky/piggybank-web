@@ -1,10 +1,14 @@
-﻿@model IEnumerable<TransactionDto>
+﻿@model HistoryViewModel
 @{
     ViewData["Title"] = "Index";
 }
 
-@foreach (var item in Model)
+@foreach (var item in Model.TransactionsInDay)
 {
-    <div>@item.Amount</div>
+    <div>@item.Date.ToShortDateString()</div>
+    foreach (var transaction in item.Transactions)
+    {
+        <partial name="TransactionView" for="@transaction" />
+    }
 }
 
