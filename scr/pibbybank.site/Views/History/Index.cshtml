@@ -5,7 +5,7 @@
 
 @foreach (var item in Model.TransactionsInDay)
 {
-    <div>@item.Date.ToShortDateString()</div>
+    <div style="font-weight:600;">@item.Date.ToShortDateString()</div>
     foreach (var transaction in item.Transactions)
     {
         <partial name="TransactionView" for="@transaction" />
