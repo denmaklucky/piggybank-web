@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using piggybank.common.Enums;
 using piggybank.dal;
+using piggybank.dal.Models;
 using System;
 using System.Linq;
 
@@ -14,21 +16,21 @@ namespace piggybank.site.Models
             var context = app.ApplicationServices.GetRequiredService<PiggyContext>();
             context.Database.Migrate();
 
-            if(!context.Categories.Any())
+            if (!context.Categories.Any())
             {
-                context.Categories.Add(new dal.Models.Category
+                context.Categories.Add(new Category
                 {
                     Title = "Products",
-                    Type = dal.Enums.CategoryType.Expense,
+                    Type = CategoryType.Expense,
                     IsDeleted = false,
                     IsRequired = true,
                     CreatedOn = DateTime.Now,
                     HexColor = "#FFFFB900"
                 });
-                context.Categories.Add(new dal.Models.Category
+                context.Categories.Add(new Category
                 {
                     Title = "Salary",
-                    Type = dal.Enums.CategoryType.Income,
+                    Type = CategoryType.Income,
                     IsDeleted = false,
                     IsRequired = true,
                     CreatedOn = DateTime.Now,
@@ -46,7 +48,7 @@ namespace piggybank.site.Models
                     IsArchived = false,
                     IsDeleted = false,
                     Title = "LimeCredit",
-                    Type = dal.Enums.AccountType.Card
+                    Type = AccountType.Card
                 });
             }
 
@@ -58,8 +60,8 @@ namespace piggybank.site.Models
                     CategoryId = 1,
                     Amount = 2000,
                     Comment = "Buy in Spar",
-                    CreatedOn =DateTime.Now,
-                    Type = dal.Enums.TransactionType.Expense
+                    CreatedOn = DateTime.Now,
+                    Type = TransactionType.Expense
                 });
 
                 context.Transactions.Add(new dal.Models.Transaction
@@ -69,7 +71,7 @@ namespace piggybank.site.Models
                     Amount = 1400,
                     Comment = "Buy in Spar",
                     CreatedOn = DateTime.Now,
-                    Type = dal.Enums.TransactionType.Expense
+                    Type = TransactionType.Expense
                 });
 
                 context.Transactions.Add(new dal.Models.Transaction
@@ -78,7 +80,7 @@ namespace piggybank.site.Models
                     CategoryId = 2,
                     Amount = 2000,
                     CreatedOn = DateTime.Now,
-                    Type = dal.Enums.TransactionType.Income
+                    Type = TransactionType.Income
                 });
             }
 

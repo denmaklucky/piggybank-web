@@ -1,4 +1,4 @@
-﻿using piggybank.dal.DTO;
+﻿using piggybank.dal.Dto;
 using System;
 using System.Collections.Generic;
 

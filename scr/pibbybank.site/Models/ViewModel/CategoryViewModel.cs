@@ -1,20 +1,24 @@
 ﻿using piggybank.common.Enums;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace piggybank.dal.Models
+namespace piggybank.site.Models.ViewModel
 {
-    public class Category : EntityBase, IBaseModel
+    public class CategoryViewModel
     {
-        [Key]
         public int Id { get; set; }
 
+        [DisplayName("Title")]
+        [Required]
         public string Title { get; set; }
 
-        [Required]
+        [DisplayName("Color")]
         public string HexColor { get; set; }
 
-        public CategoryType Type { get; set; }
+        [DisplayName("Show in")]
+        public CategoryType CategoryType { get; set; }
 
+        [DisplayName("Required")]
         public bool IsRequired { get; set; }
 
         public bool IsDeleted { get; set; }
