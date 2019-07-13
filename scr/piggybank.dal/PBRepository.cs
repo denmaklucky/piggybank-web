@@ -37,9 +37,9 @@ namespace piggybank.dal.Contracts
                     categoryEntity.Title = category.Title;
                     categoryEntity.HexColor = category.HexColor;
                     categoryEntity.Type = category.Type;
-                    category.IsDeleted = category.IsDeleted;
-                    category.IsRequired = category.IsRequired;
-                    category.ModifiedOn = DateTime.Now;
+                    categoryEntity.IsDeleted = category.IsDeleted;
+                    categoryEntity.IsRequired = category.IsRequired;
+                    categoryEntity.ModifiedOn = DateTime.Now;
 
                     result = true;
                 }
