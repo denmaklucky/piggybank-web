@@ -1,7 +1,7 @@
-﻿using piggybank.dal.Enums;
+﻿using piggybank.common.Enums;
 using System;
 
-namespace piggybank.dal.DTO
+namespace piggybank.dal.Dto
 {
     public class AccountDto
     {

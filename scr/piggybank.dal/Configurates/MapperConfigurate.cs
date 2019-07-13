@@ -1,7 +1,7 @@
-﻿using piggybank.dal.DTO;
-using piggybank.dal.Models;
+﻿using piggybank.dal.Models;
 using AutoMapper;
 using AutoMapper.Configuration;
+using piggybank.dal.Dto;
 
 namespace piggybank.dal.Configurates
 {
@@ -13,6 +13,7 @@ namespace piggybank.dal.Configurates
             config.CreateMap<Transaction, TransactionDto>();
             config.CreateMap<Account, AccountDto>();
             config.CreateMap<Category, CategoryDto>();
+            config.CreateMap<CategoryDto, Category>();
 
             Mapper.Reset();
             Mapper.Initialize(config);

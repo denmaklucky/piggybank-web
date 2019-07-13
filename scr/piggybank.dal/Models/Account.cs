@@ -1,4 +1,4 @@
-﻿using piggybank.dal.Enums;
+﻿using piggybank.common.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace piggybank.dal.Models

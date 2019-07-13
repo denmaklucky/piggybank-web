@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using piggybank.dal;
 using piggybank.dal.Contracts;
+using piggybank.site.Configurates;
 using piggybank.site.Models;
 
 namespace pibbybank.site
@@ -45,6 +41,7 @@ namespace pibbybank.site
             });
 
             SeedData.EnsurePopulated(app);
+            MapperInit.Configurate();
         }
 
         public IConfiguration Configuration { get; }

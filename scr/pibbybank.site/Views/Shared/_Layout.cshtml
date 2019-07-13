@@ -10,8 +10,15 @@
 </head>
 <body>
     <div class="navbar navbar-dark hg-pink " role="navigation">
+        <img src="~/content/logo2.png"/>
         <a class="col navbar-brand" href="#">PiggyBank</a>
     </div>
+    @if(TempData["msg_category"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["msg_category"]
+        </div>
+    }
     <div class="row m-1 p-1">
         <aside class="col-3">
         </aside>
