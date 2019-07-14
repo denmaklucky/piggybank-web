@@ -10,18 +10,22 @@
 </head>
 <body>
     <div class="navbar navbar-dark hg-pink " role="navigation">
-        <img src="~/content/logo2.png"/>
-        <a class="col navbar-brand" href="#">PiggyBank</a>
+        <div class="container">
+            <img src="~/content/logo2.png" />
+            <a class="col navbar-brand" href="#">PiggyBank</a>
+            <div class="col text-right">
+                @await Component.InvokeAsync("AccountsSummary")
+            </div>
+        </div>
     </div>
-    @if(TempData["msg_category"] != null)
+    @if (TempData["msg_category"] != null)
     {
         <div class="alert alert-success" role="alert">
             @TempData["msg_category"]
         </div>
     }
     <div class="row m-1 p-1">
-        <aside class="col-3">
-        </aside>
+        <aside class="col-3"></aside>
         <div class="col-6">
             @RenderBody()
         </div>
