@@ -49,6 +49,37 @@ namespace piggybank.dal.Contracts
             return result;
         }
 
+        public async Task<bool> AddOrUpdateAccount(AccountDto account)
+        {
+            bool result = false;
+            if (account.Id == 0)
+            {
+                account.CreatedOn = DateTime.Now;
+                await _context.Accounts.AddAsync(Mapper.Map<Account>(account));
+
+                result = true;
+            }
+            else
+            {
+                var accountEntity = await _context.Accounts.FirstOrDefaultAsync(c => c.Id == account.Id);
+                if (accountEntity != null)
+                {
+                    accountEntity.Title = account.Title;
+                    accountEntity.Type = account.Type;
+                    accountEntity.IsDeleted = account.IsDeleted;
+                    accountEntity.IsArchived = account.IsArchived;
+                    accountEntity.Balance = account.Balance;
+                    accountEntity.Currency = account.Currency;
+                    accountEntity.ModifiedOn = DateTime.Now;
+
+                    result = true;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return result;
+        }
+
         public IQueryable<TransactionDto> Transactions => _context.Transactions.ProjectTo<TransactionDto>();
         public IQueryable<AccountDto> Accounts => _context.Accounts.ProjectTo<AccountDto>();
         public IQueryable<CategoryDto> Categories => _context.Categories.ProjectTo<CategoryDto>();

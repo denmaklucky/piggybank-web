@@ -8,6 +8,8 @@ namespace piggybank.dal.Contracts
     {
         Task<bool> AddOrUpdateCategory(CategoryDto category);
 
+        Task<bool> AddOrUpdateAccount(AccountDto account);
+
         IQueryable<TransactionDto> Transactions { get; }
 
         IQueryable<AccountDto> Accounts { get; }
