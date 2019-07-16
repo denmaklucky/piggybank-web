@@ -14,6 +14,7 @@ namespace piggybank.dal.Configurates
             config.CreateMap<Account, AccountDto>();
             config.CreateMap<Category, CategoryDto>();
             config.CreateMap<CategoryDto, Category>();
+            config.CreateMap<AccountDto, Account>();
 
             Mapper.Reset();
             Mapper.Initialize(config);

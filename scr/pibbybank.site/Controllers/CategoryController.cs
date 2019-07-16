@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using piggybank.dal.Contracts;
 using piggybank.dal.Dto;
@@ -16,10 +15,7 @@ namespace piggybank.site.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index()
-        {
-            return View(_repository.Categories.ToList());
-        }
+        public IActionResult Index() => View(_repository.Categories.ToList());
 
         public IActionResult Create() => View("EditCategory", new CategoryViewModel());
 
@@ -37,7 +33,7 @@ namespace piggybank.site.Controllers
                     Id = category.Id
                 };
                 await _repository.AddOrUpdateCategory(categoryDto);
-                TempData["msg_category"] = $"{category.Title} has been created";
+                TempData["msg"] = $"{category.Title} has been saved";
                 return RedirectToAction(nameof(Index));
             }
             else
