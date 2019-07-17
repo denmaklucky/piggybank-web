@@ -1,4 +1,5 @@
 ﻿using piggybank.common.Enums;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace piggybank.site.Models.ViewModel
@@ -17,7 +18,10 @@ namespace piggybank.site.Models.ViewModel
 
         public decimal Balance { get; set; }
 
+        [DisplayName("Deleted")]
         public bool IsDeleted { get; set; }
+
+        [DisplayName("Archived")]
 
         public bool IsArchived { get; set; }
     }

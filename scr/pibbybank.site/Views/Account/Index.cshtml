@@ -1,0 +1,10 @@
+﻿@model IEnumerable<AccountDto>
+
+<div class="row no-gutters">
+    <a asp-action="Create" class="btn btn-success">Add</a>
+</div>
+
+@foreach (var item in Model)
+{
+    <partial name="AccountView" for="@item"/>
+}

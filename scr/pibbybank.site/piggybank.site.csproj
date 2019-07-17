@@ -16,6 +16,7 @@
   <ItemGroup>
     <Folder Include="Infrastructure\" />
     <Folder Include="Models\DataModel\" />
+    <Folder Include="Views\History\" />
     <Folder Include="WebApi\" />
   </ItemGroup>
 
