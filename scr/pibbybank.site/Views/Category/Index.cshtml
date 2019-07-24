@@ -1,9 +1,14 @@
 ﻿@model IEnumerable<CategoryDto>
 
-<div class="row no-gutters">
-    <a asp-action="Create" class="btn btn-success">Add</a>
+<div class="row">
+    <div class="col-2">
+        <a asp-action="Create" class="p-button has-icon"> <i class="p-icon--plus"></i> <span>Add</span></a>
+    </div>
 </div>
+
 @foreach (var item in Model)
 {
-    <partial name="CategoryView" for="@item"/>
+    <div class="row">
+        <partial name="CategoryView" for="@item" />
+    </div>
 }
