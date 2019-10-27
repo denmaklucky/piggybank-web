@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace piggybank.common.Enums
+namespace PiggyBank.Common.Enums
 {
     public enum CategoryType
     {
@@ -8,9 +8,9 @@ namespace piggybank.common.Enums
         Undefined = 0,
 
         [Description("Доход")]
-        Income = 1,
+        Income,
 
         [Description("Расход")]
-        Expense = 2,
+        Expense,
     }
 }

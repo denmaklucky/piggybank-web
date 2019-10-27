@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace piggybank.common.Enums
+namespace PiggyBank.Common.Enums
 {
     public enum TransactionType
     {

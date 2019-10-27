@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace piggybank.common.Enums
+namespace PiggyBank.Common.Enums
 {
     public enum AccountType
     {
@@ -8,18 +8,15 @@ namespace piggybank.common.Enums
         Undefined = 0,
 
         [Description("Наличные")]
-        Cash = 1,
+        Cash,
 
         [Description("Банковская карта")]
-        Card = 2,
+        Card,
 
         [Description("Банковский счет")]
-        BankAccount = 3,
+        BankAccount,
 
         [Description("Депозит")]
-        Deposit = 4,
-
-        [Description("Кредит")]
-        Credit = 5
+        Deposit
     }
 }
