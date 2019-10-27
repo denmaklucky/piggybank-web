@@ -5,7 +5,7 @@ namespace piggybank.dal
 {
     public class PiggyContext : DbContext
     {
-        public PiggyContext(DbContextOptions<PiggyContext> options) 
+        public PiggyContext(DbContextOptions<PiggyContext> options)
             : base(options)
         {
         }
