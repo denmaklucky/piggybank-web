@@ -20,8 +20,4 @@
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\piggybank.dal\piggybank.dal.csproj" />
-  </ItemGroup>
-
 </Project>

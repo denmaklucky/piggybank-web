@@ -1,4 +1,4 @@
-﻿namespace PiggyBank.Model
+﻿namespace PiggyBank.Domain
 {
     class Program
     {
