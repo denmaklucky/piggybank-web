@@ -1,8 +1,8 @@
 ﻿using PiggyBank.Model;
 using PiggyBank.Model.Interfaces;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace PiggyBank.Domain.Handler
 {
@@ -12,10 +12,13 @@ namespace PiggyBank.Domain.Handler
 
         public TCommand Command { get; set; }
 
-        protected BaseHandler(PiggyContext context)
-            => _context = context;
+        protected BaseHandler(PiggyContext context, TCommand command)
+        {
+            _context = context;
+            Command = command;
+        }
 
-        public IQueryable<T> GetRepository<T>() where T : class, IBaseModel
+        public DbSet<T> GetRepository<T>() where T : class, IBaseModel
         => _context.Set<T>();
 
         public abstract Task Invoke();

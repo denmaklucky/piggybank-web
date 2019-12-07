@@ -12,9 +12,9 @@ namespace PiggyBank.Domain.Infrastructure
         public HandlerDispatcher(PiggyContext context)
             => _context = context;
 
-        public async Task Invoke<THandler, TCommand>() where THandler : BaseHandler<TCommand>
+        public async Task Invoke<THandler, TCommand>(TCommand command) where THandler : BaseHandler<TCommand>
         {
-            var handler = (BaseHandler<TCommand>)Activator.CreateInstance(typeof(THandler), _context);
+            var handler = (BaseHandler<TCommand>)Activator.CreateInstance(typeof(THandler), _context, command);
             try
             {
                 await handler.Invoke();
@@ -23,6 +23,10 @@ namespace PiggyBank.Domain.Infrastructure
             {
                 Console.WriteLine(e);
                 throw;
+            }
+            finally
+            {
+                await _context.SaveChangesAsync();
             }
         }
     }

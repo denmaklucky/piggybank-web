@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PiggyBank.Common.Interfaces;
+using PiggyBank.Domain;
 using PiggyBank.WebSite.Data;
 
 namespace PiggyBank.WebSite
@@ -29,6 +31,7 @@ namespace PiggyBank.WebSite
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddTransient<IPiggyService, PiggyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
