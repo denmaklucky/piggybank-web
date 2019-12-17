@@ -15,12 +15,9 @@ namespace PiggyBank.Domain
         private readonly HandlerDispatcher _handlerDispatcher;
         private readonly QueryDispatcher _queryDispatcher;
 
-        public PiggyService()
+        public PiggyService(ServiceSettings settings)
         {
-            var builder = new DbContextOptionsBuilder<PiggyContext>();
-            builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Piggy;Trusted_Connection=True;MultipleActiveResultSets=true");
-            var context =  new PiggyContext(builder.Options);
-
+            var context = InitializationContext(settings.ConnectionString);
             context.Database.Migrate();
 
             _handlerDispatcher = new HandlerDispatcher(context);
@@ -32,5 +29,12 @@ namespace PiggyBank.Domain
 
         public Task<AccountDto[]> GetAccounts()
             => _queryDispatcher.Invoke<GetAccountsQuery, AccountDto[]>();
+
+        private PiggyContext InitializationContext(string connectionString)
+        {
+            var builder = new DbContextOptionsBuilder<PiggyContext>();
+            builder.UseSqlServer(connectionString);
+            return new PiggyContext(builder.Options);
+        }
     }
 }
