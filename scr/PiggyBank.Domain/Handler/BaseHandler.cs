@@ -1,31 +1,16 @@
 ﻿using PiggyBank.Model;
-using PiggyBank.Model.Interfaces;
-using System;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using PiggyBank.Domain.Infrastructure;
 
 namespace PiggyBank.Domain.Handler
 {
-    public abstract class BaseHandler<TCommand> : IDisposable
+    public abstract class BaseHandler<TCommand> : DbWorker
     {
-        private readonly PiggyContext _context;
-
         public TCommand Command { get; set; }
 
-        protected BaseHandler(PiggyContext context, TCommand command)
-        {
-            _context = context;
-            Command = command;
-        }
-
-        public DbSet<T> GetRepository<T>() where T : class, IBaseModel
-        => _context.Set<T>();
+        protected BaseHandler(PiggyContext context, TCommand command) : base(context)
+        => Command = command;
 
         public abstract Task Invoke();
-
-        public void Dispose()
-        {
-            _context?.Dispose();
-        }
     }
 }

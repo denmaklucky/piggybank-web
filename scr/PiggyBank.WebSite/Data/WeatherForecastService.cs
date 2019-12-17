@@ -31,7 +31,7 @@ namespace PiggyBank.WebSite.Data
             }).ToArray());
         }
 
-        public async Task AddCount()
+        public async Task AddAccount()
         {
             var addCommand = new AddAccountCommand
             {
