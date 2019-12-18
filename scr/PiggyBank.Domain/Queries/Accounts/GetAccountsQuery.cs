@@ -14,13 +14,10 @@ namespace PiggyBank.Domain.Queries.Accounts
         public override Task<AccountDto[]> Invoke()
             => GetRepository<Account>().Select(a => new AccountDto
             {
+                Id = a.Id,
                 Balance = a.Balance,
                 Currency = a.Currency,
-                Id = a.Id,
-                IsArchived = a.IsArchived,
-                IsDeleted = a.IsDeleted,
                 Title = a.Title,
-                Type = a.Type
             }).ToArrayAsync();
     }
 }

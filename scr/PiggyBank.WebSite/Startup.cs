@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Domain;
 using PiggyBank.Domain.Infrastructure;
-using PiggyBank.WebSite.Data;
 
 namespace PiggyBank.WebSite
 {
@@ -19,13 +18,10 @@ namespace PiggyBank.WebSite
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             services.AddTransient(x => new ServiceSettings
             {
                 ConnectionString = Configuration.GetConnectionString("dbConnection")

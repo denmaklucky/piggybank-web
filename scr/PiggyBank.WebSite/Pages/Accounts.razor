@@ -1,0 +1,15 @@
+﻿@page "/accounts"
+@inherits AccountsViewModel
+@inject IPiggyService PiggyService
+
+@if (Accounts == null)
+{
+    <span>You're haven't any accounts. Please create it!</span>
+}
+else
+{
+        @foreach (var account in Accounts)
+        {
+            <Account AccountModel="account"/>
+        }
+}

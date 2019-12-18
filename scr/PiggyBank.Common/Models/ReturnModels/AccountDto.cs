@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PiggyBank.Common.Enums;
-
-namespace PiggyBank.Common.Models.ReturnModels
+﻿namespace PiggyBank.Common.Models.ReturnModels
 {
     public class AccountDto
     {
@@ -11,14 +6,8 @@ namespace PiggyBank.Common.Models.ReturnModels
 
         public string Title { get; set; }
 
-        public AccountType Type { get; set; }
-
         public string Currency { get; set; }
 
         public decimal Balance { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public bool IsArchived { get; set; }
     }
 }
