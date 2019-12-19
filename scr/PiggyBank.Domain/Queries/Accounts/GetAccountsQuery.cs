@@ -15,6 +15,7 @@ namespace PiggyBank.Domain.Queries.Accounts
             => GetRepository<Account>().Select(a => new AccountDto
             {
                 Id = a.Id,
+                Type = a.Type,
                 Balance = a.Balance,
                 Currency = a.Currency,
                 Title = a.Title,

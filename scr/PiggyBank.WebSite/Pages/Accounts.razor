@@ -1,6 +1,11 @@
 ﻿@page "/accounts"
 @inherits AccountsViewModel
-@inject IPiggyService PiggyService
+
+<div class="text-right">
+    <a href="#" class="btn btn-success">Add new Account</a>
+</div>
+
+<br />
 
 @if (Accounts == null)
 {
@@ -8,8 +13,8 @@
 }
 else
 {
-        @foreach (var account in Accounts)
-        {
-            <Account AccountModel="account"/>
-        }
+    @foreach (var account in Accounts)
+    {
+        <Account AccountModel="account" />
+    }
 }

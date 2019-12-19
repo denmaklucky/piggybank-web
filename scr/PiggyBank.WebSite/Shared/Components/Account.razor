@@ -1,7 +1,15 @@
 ﻿
 <div class="card">
     <div class="card-body">
-        @AccountModel.Title
+        <div class="d-inline">
+            @AccountModel.Type
+        </div>
+        <div class="d-inline">
+            @AccountModel.Title
+        </div>
+        <div class="d-inline">
+            @BalanceAndCurrency
+        </div>
     </div>
 </div>
 
@@ -9,4 +17,6 @@
 
     [Parameter]
     public AccountDto AccountModel { get; set; }
+
+    public string BalanceAndCurrency => $"{AccountModel?.Balance } {AccountModel?.Currency}";
 }
