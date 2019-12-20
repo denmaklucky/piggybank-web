@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using PiggyBank.Common.Commands.Accounts;
+using PiggyBank.Common.Enums;
 using PiggyBank.Common.Models.ReturnModels;
 
 namespace PiggyBank.Common.Interfaces
@@ -9,5 +11,7 @@ namespace PiggyBank.Common.Interfaces
         Task AddAccount(AddAccountCommand command);
 
         Task<AccountDto[]> GetAccounts();
+
+        Task<Dictionary<AccountType, AccountDto[]>> GetAccountsGroupByType();
     }
 }

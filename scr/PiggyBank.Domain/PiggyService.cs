@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PiggyBank.Common.Commands.Accounts;
+using PiggyBank.Common.Enums;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.ReturnModels;
 using PiggyBank.Domain.Handler.Accounts;
@@ -29,6 +31,11 @@ namespace PiggyBank.Domain
 
         public Task<AccountDto[]> GetAccounts()
             => _queryDispatcher.Invoke<GetAccountsQuery, AccountDto[]>();
+
+        public Task<Dictionary<AccountType, AccountDto[]>> GetAccountsGroupByType()
+        {
+            throw new System.NotImplementedException();
+        }
 
         private PiggyContext InitializationContext(string connectionString)
         {
