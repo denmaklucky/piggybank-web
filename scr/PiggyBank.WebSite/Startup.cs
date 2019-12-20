@@ -26,7 +26,7 @@ namespace PiggyBank.WebSite
             {
                 ConnectionString = Configuration.GetConnectionString("dbConnection")
             });
-            services.AddTransient<IPiggyService, PiggyService>();
+            services.AddTransient<IAccountService, PiggyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

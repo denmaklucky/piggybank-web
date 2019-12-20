@@ -1,18 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using PiggyBank.Common.Commands.Accounts;
-using PiggyBank.Common.Enums;
-using PiggyBank.Common.Interfaces;
-using PiggyBank.Common.Models.ReturnModels;
-using PiggyBank.Domain.Handler.Accounts;
+﻿using Microsoft.EntityFrameworkCore;
 using PiggyBank.Domain.Infrastructure;
-using PiggyBank.Domain.Queries.Accounts;
 using PiggyBank.Model;
 
 namespace PiggyBank.Domain
 {
-    public class PiggyService : IPiggyService
+    public partial class PiggyService
     {
         private readonly HandlerDispatcher _handlerDispatcher;
         private readonly QueryDispatcher _queryDispatcher;
@@ -24,17 +16,6 @@ namespace PiggyBank.Domain
 
             _handlerDispatcher = new HandlerDispatcher(context);
             _queryDispatcher = new QueryDispatcher(context);
-        }
-
-        public Task AddAccount(AddAccountCommand command)
-            => _handlerDispatcher.Invoke<AddAccountHandler, AddAccountCommand>(command);
-
-        public Task<AccountDto[]> GetAccounts()
-            => _queryDispatcher.Invoke<GetAccountsQuery, AccountDto[]>();
-
-        public Task<Dictionary<AccountType, AccountDto[]>> GetAccountsGroupByType()
-        {
-            throw new System.NotImplementedException();
         }
 
         private PiggyContext InitializationContext(string connectionString)
