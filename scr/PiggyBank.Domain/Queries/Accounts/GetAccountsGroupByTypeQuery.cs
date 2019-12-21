@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Queries.Accounts
 {
-    public class GetAccountsGroupByTypeQuery : BaseQuery<GenericGroup<AccountType, AccountDto>[]>
+    public class GetAccountsGroupByTypeQuery : BaseQuery<GenericGroup<AccountType, AccountInfoDto>[]>
     {
         public GetAccountsGroupByTypeQuery(PiggyContext context) : base(context) { }
 
-        public override async Task<GenericGroup<AccountType, AccountDto>[]> Invoke()
+        public override async Task<GenericGroup<AccountType, AccountInfoDto>[]> Invoke()
         {
             var query = GetRepository<Account>().GroupBy(a => a.Type)
             .Select(g => new

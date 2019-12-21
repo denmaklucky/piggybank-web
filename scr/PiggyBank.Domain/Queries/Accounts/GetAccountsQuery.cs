@@ -7,12 +7,12 @@ using PiggyBank.Model.Models;
 
 namespace PiggyBank.Domain.Queries.Accounts
 {
-    public class GetAccountsQuery : BaseQuery<AccountDto[]>
+    public class GetAccountsQuery : BaseQuery<AccountInfoDto[]>
     {
         public GetAccountsQuery(PiggyContext context) : base(context) {}
 
-        public override Task<AccountDto[]> Invoke()
-            => GetRepository<Account>().Select(a => new AccountDto
+        public override Task<AccountInfoDto[]> Invoke()
+            => GetRepository<Account>().Select(a => new AccountInfoDto
             {
                 Id = a.Id,
                 Type = a.Type,

@@ -11,7 +11,10 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
         [Inject]
         public IAccountService AccountService { get; set; }
 
-        public AccountDto[] Accounts { get; set; }
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
+        public AccountInfoDto[] Accounts { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -20,7 +23,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         public void OnClick(int accountId, MouseEventArgs args)
         {
-
+            NavigationManager.NavigateTo($"accounts/{accountId}");
         }
     }
 }

@@ -1,19 +1,29 @@
-﻿using PiggyBank.Common.Models.ReturnModels;
+﻿using Microsoft.EntityFrameworkCore;
+using PiggyBank.Common.Models.ReturnModels;
 using PiggyBank.Model;
-using System;
+using PiggyBank.Model.Models;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Queries.Accounts
 {
-    public class GetAccountByIdQuery : BaseQuery<AccountDto1>
+    public class GetAccountByIdQuery : BaseQuery<AccountDto>
     {
-        public GetAccountByIdQuery(PiggyContext context) : base(context)
-        {
-        }
+        private readonly int _accountId;
+        public GetAccountByIdQuery(PiggyContext context, int accountId) : base(context)
+            => _accountId = accountId;
 
-        public override Task<AccountDto1> Invoke()
-        {
-            throw new NotImplementedException();
-        }
+        public override Task<AccountDto> Invoke()
+            => GetRepository<Account>().Where(a => a.Id == _accountId)
+            .Select(a => new AccountDto
+            {
+                Id = a.Id,
+                Balance = a.Balance,
+                Currency = a.Currency,
+                IsArchived = a.IsArchived,
+                IsDeleted = a.IsDeleted,
+                Title = a.Title,
+                Type = a.Type
+            }).FirstOrDefaultAsync();
     }
 }

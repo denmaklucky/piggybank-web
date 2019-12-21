@@ -19,12 +19,19 @@ namespace PiggyBank.Common.Interfaces
         /// Get accounts
         /// </summary>
         /// <returns></returns>
-        Task<AccountDto[]> GetAccounts();
+        Task<AccountInfoDto[]> GetAccounts();
 
         /// <summary>
         /// Get accounts group by type
         /// </summary>
         /// <returns></returns>
-        Task<GenericGroup<AccountType, AccountDto>[]> GetAccountsGroupByType();
+        Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType();
+
+        /// <summary>
+        /// Get account by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<AccountDto> GetAccount(int id);
     }
 }

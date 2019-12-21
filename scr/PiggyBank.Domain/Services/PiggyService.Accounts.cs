@@ -14,11 +14,14 @@ namespace PiggyBank.Domain.Services
         public Task AddAccount(AddAccountCommand command)
              => _handlerDispatcher.Invoke<AddAccountHandler, AddAccountCommand>(command);
 
-        public Task<AccountDto[]> GetAccounts()
-            => _queryDispatcher.Invoke<GetAccountsQuery, AccountDto[]>();
+        public Task<AccountDto> GetAccount(int accountId)
+            => _queryDispatcher.Invoke<GetAccountByIdQuery, AccountDto>(accountId);
 
-        public Task<GenericGroup<AccountType, AccountDto>[]> GetAccountsGroupByType()
-            => _queryDispatcher.Invoke<GetAccountsGroupByTypeQuery, GenericGroup<AccountType, AccountDto>[]>();
+        public Task<AccountInfoDto[]> GetAccounts()
+            => _queryDispatcher.Invoke<GetAccountsQuery, AccountInfoDto[]>();
+
+        public Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType()
+            => _queryDispatcher.Invoke<GetAccountsGroupByTypeQuery, GenericGroup<AccountType, AccountInfoDto>[]>();
 
     }
 }
