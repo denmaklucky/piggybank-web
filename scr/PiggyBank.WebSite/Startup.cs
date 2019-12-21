@@ -4,8 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PiggyBank.Common.Interfaces;
-using PiggyBank.Domain;
 using PiggyBank.Domain.Infrastructure;
+using PiggyBank.Domain.Services;
 
 namespace PiggyBank.WebSite
 {

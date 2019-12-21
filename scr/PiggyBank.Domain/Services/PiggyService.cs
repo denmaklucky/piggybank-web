@@ -2,7 +2,7 @@
 using PiggyBank.Domain.Infrastructure;
 using PiggyBank.Model;
 
-namespace PiggyBank.Domain
+namespace PiggyBank.Domain.Services
 {
     public partial class PiggyService
     {

@@ -4,6 +4,7 @@ using PiggyBank.Common.Models.Generic;
 using PiggyBank.Common.Models.ReturnModels;
 using PiggyBank.Model;
 using PiggyBank.Model.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,19 +14,27 @@ namespace PiggyBank.Domain.Queries.Accounts
     {
         public GetAccountsGroupByTypeQuery(PiggyContext context) : base(context) { }
 
-        public override Task<GenericGroup<AccountType, AccountDto>[]> Invoke()
-            => GetRepository<Account>().GroupBy(a => a.Type)
-            .Select(a => new GenericGroup<AccountType, AccountDto>
+        public override async Task<GenericGroup<AccountType, AccountDto>[]> Invoke()
+        {
+            var query = GetRepository<Account>().GroupBy(a => a.Type)
+            .Select(g => new
             {
-                Key = a.Key,
-                Values = a.Select(x => new AccountDto
-                {
-                    Balance = x.Balance,
-                    Currency = x.Currency,
-                    Id = x.Id,
-                    Title = x.Title,
-                    Type = x.Type
-                }).ToArray()
-            }).ToArrayAsync();
+                Key = g.Key,
+                Account = g
+            });
+
+            try
+            {
+                var temp = await query.ToArrayAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+            return null;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.ReturnModels;
 using System.Threading.Tasks;
@@ -14,7 +15,12 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         protected override async Task OnInitializedAsync()
         {
-            var accounts = await AccountService.GetAccounts();
+            Accounts = await AccountService.GetAccounts();
+        }
+
+        public void OnClick(int accountId, MouseEventArgs args)
+        {
+
         }
     }
 }

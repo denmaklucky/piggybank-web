@@ -1,0 +1,22 @@
+﻿<div class="card active" @onclick="OnCardClick">
+    <div class="card-body">
+        <div class="d-inline">
+            <bold>@Account.Type</bold>
+        </div>
+        <div class="d-inline">
+            @Account.Title
+        </div>
+        <div class="d-inline">
+            @($"{Account.Balance} {Account.Currency}")
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public AccountDto Account { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnCardClick { get; set; }
+}

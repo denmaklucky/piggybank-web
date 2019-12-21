@@ -3,7 +3,8 @@ using PiggyBank.Common.Enums;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Generic;
 using PiggyBank.Common.Models.ReturnModels;
-using System;
+using PiggyBank.Domain.Handler.Accounts;
+using PiggyBank.Domain.Queries.Accounts;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Services
@@ -11,19 +12,13 @@ namespace PiggyBank.Domain.Services
     public partial class PiggyService : IAccountService
     {
         public Task AddAccount(AddAccountCommand command)
-        {
-            throw new NotImplementedException();
-        }
+             => _handlerDispatcher.Invoke<AddAccountHandler, AddAccountCommand>(command);
 
         public Task<AccountDto[]> GetAccounts()
-        {
-            throw new NotImplementedException();
-        }
+            => _queryDispatcher.Invoke<GetAccountsQuery, AccountDto[]>();
 
         public Task<GenericGroup<AccountType, AccountDto>[]> GetAccountsGroupByType()
-        {
-            throw new NotImplementedException();
-        }
+            => _queryDispatcher.Invoke<GetAccountsGroupByTypeQuery, GenericGroup<AccountType, AccountDto>[]>();
 
     }
 }
