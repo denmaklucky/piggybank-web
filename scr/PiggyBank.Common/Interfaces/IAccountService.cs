@@ -37,8 +37,8 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Update exists entity
         /// </summary>
-        /// <param name="account"></param>
+        /// <param name="command"></param>
         /// <returns></returns>
-        Task Update(AccountDto account);
+        Task UpdateAccountCommand(UpdateAccountCommand command);
     }
 }

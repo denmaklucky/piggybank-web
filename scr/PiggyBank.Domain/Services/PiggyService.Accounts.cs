@@ -23,5 +23,7 @@ namespace PiggyBank.Domain.Services
         public Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType()
             => _queryDispatcher.Invoke<GetAccountsGroupByTypeQuery, GenericGroup<AccountType, AccountInfoDto>[]>();
 
+        public Task UpdateAccountCommand(UpdateAccountCommand command)
+            => _handlerDispatcher.Invoke<UpdateAccountHandler, UpdateAccountCommand>(command);
     }
 }

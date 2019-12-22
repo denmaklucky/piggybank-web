@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.ReturnModels;
 using System.Threading.Tasks;
@@ -13,11 +14,23 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
         [Inject]
         public IAccountService AccountService { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         public AccountDto Model { get; set; }
 
-        public void OnSave()
+        public async Task OnSave()
         {
-
+            await AccountService.UpdateAccountCommand(new UpdateAccountCommand
+            {
+                Balance = Model.Balance,
+                Currency = Model.Currency,
+                Id = Model.Id,
+                IsArchived = Model.IsArchived,
+                IsDeleted = Model.IsDeleted,
+                Title = Model.Title,
+                Type = Model.Type
+            });
         }
 
         protected override async Task OnInitializedAsync()
