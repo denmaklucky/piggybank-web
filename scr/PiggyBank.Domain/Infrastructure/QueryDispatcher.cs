@@ -13,7 +13,7 @@ namespace PiggyBank.Domain.Infrastructure
             => _context = context;
 
         public Task<TOutput> Invoke<TQuery, TOutput>(params object[] obj) where TQuery : BaseQuery<TOutput>
-            => PrivateInvoke<TQuery, TOutput>(_context, obj);
+            => PrivateInvoke<TQuery, TOutput>(_context, );
 
         public Task<TOutput> Invoke<TQuery, TOutput>() where TQuery : BaseQuery<TOutput>
             => PrivateInvoke<TQuery, TOutput>(_context);

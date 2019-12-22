@@ -1,9 +1,19 @@
 ﻿@page "/accounts/{accountId:int}"
 @inherits AccountViewModel
 
-<form>
-    <div class="form-group">
-        <label for="Title" >Title</label>
-        <input @bind="Model.Title" />
-    </div>
-</form>
+@if (Model == null)
+{
+    <span>Something wrong!</span>
+}
+else
+{
+    <form>
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input id="Title" @bind="Model.Title" class="form-control"/>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary">Save</button>
+        </div>
+    </form>
+}
