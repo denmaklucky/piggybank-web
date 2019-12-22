@@ -12,8 +12,12 @@ else
             <label for="Title">Title</label>
             <input id="Title" @bind="Model.Title" class="form-control"/>
         </div>
+        <div class="form-group">
+            <label for="Balance">Balance</label>
+            <input id="Balance" @bind="Model.Balance" class="form-control" />
+        </div>
         <div class="text-center">
-            <button class="btn btn-primary">Save</button>
+            <button class="btn btn-primary" @onclick="OnSave">Save</button>
         </div>
     </form>
 }

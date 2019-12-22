@@ -33,5 +33,12 @@ namespace PiggyBank.Common.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         Task<AccountDto> GetAccount(int id);
+
+        /// <summary>
+        /// Update exists entity
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        Task Update(AccountDto account);
     }
 }

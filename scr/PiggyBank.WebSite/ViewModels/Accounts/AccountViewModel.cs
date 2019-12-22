@@ -15,6 +15,11 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         public AccountDto Model { get; set; }
 
+        public void OnSave()
+        {
+
+        }
+
         protected override async Task OnInitializedAsync()
         {
             Model = await AccountService.GetAccount(AccountId);
