@@ -22,7 +22,7 @@ else
         <h4>@group.Key</h4>
         foreach (var item in group.g)
         {
-            <AccountComponent Account="item" OnCardClick="@((args)=>OnClick(item.Id, args))" />
+            <AccountComponent Account="item" OnCardClick="@((args)=>OnClick(item.Id, args))"/>
         }
     }
 }

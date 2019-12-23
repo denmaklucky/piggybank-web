@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PiggyBank.Common.Commands.Accounts;
+using PiggyBank.Common.Enums;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.ReturnModels;
+using System;
 using System.Threading.Tasks;
 
 namespace PiggyBank.WebSite.ViewModels.Accounts
@@ -31,6 +33,12 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
                 Title = Model.Title,
                 Type = Model.Type
             });
+            NavigationManager.NavigateTo("/accounts");
+        }
+
+        public void OnChanges(ChangeEventArgs args)
+        {
+            Model.Type = (AccountType)Enum.Parse(typeof(AccountType), (string)args.Value);
         }
 
         protected override async Task OnInitializedAsync()
