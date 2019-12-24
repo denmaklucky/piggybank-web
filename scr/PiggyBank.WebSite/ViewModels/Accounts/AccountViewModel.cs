@@ -36,7 +36,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
             NavigationManager.NavigateTo("/accounts");
         }
 
-        public void OnChanges(ChangeEventArgs args)
+        public void OnTypeChanged(ChangeEventArgs args)
         {
             Model.Type = (AccountType)Enum.Parse(typeof(AccountType), (string)args.Value);
         }

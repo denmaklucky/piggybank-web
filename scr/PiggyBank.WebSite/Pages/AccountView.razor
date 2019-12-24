@@ -8,8 +8,7 @@
 }
 else
 {
-    //NavigationManager doesn work with tag form
-    <div>
+    <EditForm Model="Model">
         <div class="form-group">
             <label for="Title">Title</label>
             <input id="Title" @bind="Model.Title" class="form-control" />
@@ -20,7 +19,7 @@ else
         </div>
         <div class="form-group">
             <label for="Type">Type</label>
-            <select id="Type" @onchange="((args) => OnChanges(args))" class="form-control">
+            <select id="Type" @onchange="((args) => OnTypeChanged(args))" class="form-control">
                 @foreach (AccountType item in Enum.GetValues(typeof(AccountType)))
                 {
                     if (item == Model.Type)
@@ -37,5 +36,5 @@ else
         <div class="text-center">
             <button class="btn btn-primary" @onclick="OnSave">Save</button>
         </div>
-    </div>
+    </EditForm>
 }

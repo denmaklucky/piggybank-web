@@ -148,3 +148,9 @@ app {
         display: block;
     }
 }
+
+.pointer {
+    cursor: pointer;
+    background: #fafbfc;
+}
+

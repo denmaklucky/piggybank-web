@@ -1,4 +1,4 @@
-﻿<div class="card active" @onclick="OnCardClick">
+﻿<div class="@Class" @onclick="OnCardClick" @onmouseover="OnMouserOver" @onmouseout="OnMouseOut">
     <div class="card-body">
         <div class="d-inline">
             <bold>@Account.Type</bold>
@@ -14,9 +14,21 @@
 
 @code {
 
+    public string Class { get; set; } = "card active";
+
     [Parameter]
     public AccountInfoDto Account { get; set; }
 
     [Parameter]
     public EventCallback<MouseEventArgs> OnCardClick { get; set; }
+
+    public void OnMouserOver()
+    {
+        Class = "card active pointer";
+    }
+
+    public void OnMouseOut()
+    {
+        Class = "card active";
+    }
 }
