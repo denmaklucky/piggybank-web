@@ -154,3 +154,10 @@ app {
     background: #fafbfc;
 }
 
+.account-view{
+    display:none;
+}
+
+.color {
+    background: #fafbfc;
+}

@@ -16,6 +16,12 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         public AccountInfoDto[] Accounts { get; set; }
 
+        public string AccountViewClass { get; set; } = "d-none";
+
+        public int AccountViewId { get; set; }
+
+        public string Class { get; set; } = "col-auto";
+
         protected override async Task OnInitializedAsync()
         {
             Accounts = await AccountService.GetAccounts();
@@ -23,7 +29,10 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         public void OnCardClick(int accountId, MouseEventArgs args)
         {
-            NavigationManager.NavigateTo($"accounts/{accountId}");
+            //NavigationManager.NavigateTo($"accounts/{accountId}");
+            AccountViewId = accountId;
+            AccountViewClass = "d-block col-3 color";
+            Class = "col-9";
         }
 
         public void OnAddNewAccount()
