@@ -23,18 +23,36 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         public async Task OnSave()
         {
-            await AccountService.UpdateAccountCommand(new UpdateAccountCommand
+            if (AccountId != default)
             {
-                Balance = Model.Balance,
-                Currency = Model.Currency,
-                Id = Model.Id,
-                IsArchived = Model.IsArchived,
-                IsDeleted = Model.IsDeleted,
-                Title = Model.Title,
-                Type = Model.Type
-            });
-            NavigationManager.NavigateTo("/accounts");
+                await AccountService.UpdateAccountCommand(new UpdateAccountCommand
+                {
+                    Balance = Model.Balance,
+                    Currency = Model.Currency,
+                    Id = Model.Id,
+                    IsArchived = Model.IsArchived,
+                    IsDeleted = Model.IsDeleted,
+                    Title = Model.Title,
+                    Type = Model.Type
+                });
+            }
+            else
+            {
+                await AccountService.AddAccount(new AddAccountCommand
+                {
+                    Balance = Model.Balance,
+                    Currency = Model.Currency,
+                    IsArchived = Model.IsArchived,
+                    IsDeleted = Model.IsDeleted,
+                    Title = Model.Title,
+                    Type = Model.Type
+                });
+            }
+
+            OnGoBack();
         }
+
+        public void OnGoBack() => NavigationManager.NavigateTo("/accounts");
 
         public void OnTypeChanged(ChangeEventArgs args)
         {
@@ -43,7 +61,13 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         protected override async Task OnInitializedAsync()
         {
-            Model = await AccountService.GetAccount(AccountId);
+            if (AccountId != default)
+            {
+                Model = await AccountService.GetAccount(AccountId);
+                return;
+            }
+
+            Model = new AccountDto();
         }
     }
 }

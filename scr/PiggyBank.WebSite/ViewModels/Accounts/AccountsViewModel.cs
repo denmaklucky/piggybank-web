@@ -21,9 +21,14 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
             Accounts = await AccountService.GetAccounts();
         }
 
-        public void OnClick(int accountId, MouseEventArgs args)
+        public void OnCardClick(int accountId, MouseEventArgs args)
         {
             NavigationManager.NavigateTo($"accounts/{accountId}");
+        }
+
+        public void OnAddNewAccount()
+        {
+            NavigationManager.NavigateTo($"accounts/{default(int)}");
         }
     }
 }
