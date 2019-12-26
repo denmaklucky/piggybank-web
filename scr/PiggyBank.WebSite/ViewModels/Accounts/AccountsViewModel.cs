@@ -28,16 +28,24 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
         }
 
         public void OnCardClick(int accountId, MouseEventArgs args)
+            => OpenAccountView(accountId);
+
+
+        public void OnCloseAccountView()
         {
-            //NavigationManager.NavigateTo($"accounts/{accountId}");
-            AccountViewId = accountId;
-            AccountViewClass = "d-block col-3 color";
-            Class = "col-9";
+            AccountViewClass = "d-none";
+            Class = "col-auto";
+            NavigationManager.NavigateTo($"/accounts", true);
         }
 
         public void OnAddNewAccount()
+            => OpenAccountView();
+
+        private void OpenAccountView(int accountId = 0)
         {
-            NavigationManager.NavigateTo($"accounts/{default(int)}");
+            AccountViewId = accountId;
+            AccountViewClass = "d-block col-3 color";
+            Class = "col-9";
         }
     }
 }

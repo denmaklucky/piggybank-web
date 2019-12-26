@@ -16,8 +16,8 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
         [Inject]
         public IAccountService AccountService { get; set; }
 
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
+        [Parameter]
+        public EventCallback<EventArgs> GoBack { get; set; }
 
         public AccountDto Model { get; set; }
 
@@ -49,17 +49,17 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
                 });
             }
 
-            OnGoBack();
+            await OnGoBack();
         }
 
-        public void OnGoBack() => NavigationManager.NavigateTo("/accounts");
+        public Task OnGoBack() => GoBack.InvokeAsync(EventArgs.Empty);
 
         public void OnTypeChanged(ChangeEventArgs args)
         {
             Model.Type = (AccountType)Enum.Parse(typeof(AccountType), (string)args.Value);
         }
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
             if (AccountId != default)
             {
