@@ -2,40 +2,36 @@
 using Microsoft.AspNetCore.Components.Web;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.ReturnModels;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PiggyBank.WebSite.ViewModels.Accounts
 {
-    public class AccountsViewModel : ComponentBase
+    public class AccountSectionViewModel : ViewModelBase<AccountInfoDto[]>
     {
+        private const string DefaultClass = "col-auto";
+        public AccountSectionViewModel()
+            => Class = DefaultClass;
+
         [Inject]
         public IAccountService AccountService { get; set; }
 
-        [Inject]
-        public NavigationManager NavigationManager { get; set; }
-
-        public AccountInfoDto[] Accounts { get; set; }
-
         public string AccountViewClass { get; set; } = "d-none";
 
-        public int AccountViewId { get; set; }
-
-        public string Class { get; set; } = "col-auto";
+        public AccountInfoDto SelectedItem { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            Accounts = await AccountService.GetAccounts();
+            Model = await AccountService.GetAccounts();
         }
 
         public void OnCardClick(int accountId, MouseEventArgs args)
             => OpenAccountView(accountId);
 
-
         public void OnCloseAccountView()
         {
             AccountViewClass = "d-none";
-            Class = "col-auto";
-            NavigationManager.NavigateTo($"/accounts", true);
+            Class = DefaultClass;
         }
 
         public void OnAddNewAccount()
@@ -43,7 +39,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         private void OpenAccountView(int accountId = 0)
         {
-            AccountViewId = accountId;
+            SelectedItem = Model.FirstOrDefault(a => a.Id == accountId) ?? new AccountInfoDto();
             AccountViewClass = "d-block col-3 color";
             Class = "col-9";
         }
