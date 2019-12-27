@@ -161,3 +161,7 @@ app {
 .color {
     background: #fafbfc;
 }
+
+.b-bottom {
+    border-bottom: 1px solid #e8e8e8;
+}

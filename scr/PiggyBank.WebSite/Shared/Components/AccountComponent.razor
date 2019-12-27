@@ -6,15 +6,20 @@
         <div class="d-inline">
             @Account.Title
         </div>
-        <div class="d-inline">
-            @($"{Account.Balance} {Account.Currency}")
+        <div class="d-inline float-right">
+            <div class="d-inline">
+                @($"{Account.Balance} {Account.Currency}")
+            </div>
+            <div class="d-inline" style="font-size:15px;color:darkgrey;">
+                ...
+            </div>
         </div>
     </div>
 </div>
 
 @code {
 
-    public string Class { get; set; } = "card active";
+    public string Class { get; set; } = "b-bottom";
 
     [Parameter]
     public AccountInfoDto Account { get; set; }
@@ -24,11 +29,11 @@
 
     public void OnMouserOver()
     {
-        Class = "card active pointer";
+        Class = "b-bottom pointer";
     }
 
     public void OnMouseOut()
     {
-        Class = "card active";
+        Class = "b-bottom";
     }
 }

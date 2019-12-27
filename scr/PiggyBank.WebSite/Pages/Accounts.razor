@@ -21,11 +21,13 @@
         {
             @foreach (var group in Model.GroupBy(a => a.Type).Select(g => new { g.Key, g }))
             {
-                <h4>@group.Key</h4>
+                <h5>@group.Key</h5>
                 foreach (var item in group.g)
                 {
                     <AccountComponent Account="item" OnCardClick="@((args)=>OnCardClick(item.Id, args))" />
                 }
+
+                <br/>
             }
         }
     </div>
