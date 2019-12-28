@@ -8,21 +8,21 @@
 else
 {
 <EditForm Model="Model">
-    <div class="form-group" style="background-color:white;">
+    <div class="form-group">
         <label for="Title">Title</label>
         <input id="Title" @bind="Model.Title" class="form-control" />
     </div>
 
     <br />
 
-    <div class="form-group" style="background-color:white;">
+    <div class="form-group">
         <label for="Balance">Balance</label>
         <input id="Balance" @bind="Model.Balance" class="form-control" />
     </div>
 
     <br />
 
-    <div class="form-group" style="background-color:white;">
+    <div class="form-group">
         <label for="Type">Type</label>
         <select id="Type" @onchange="((args) => OnTypeChanged(args))" class="form-control">
             @foreach (AccountType item in Enum.GetValues(typeof(AccountType)))
