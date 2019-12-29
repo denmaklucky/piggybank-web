@@ -1,17 +1,14 @@
-﻿<div class="@Class" @onclick="OnCardClick" @onmouseover="OnMouserOver" @onmouseout="OnMouseOut">
+﻿<div class="@Class" @onmouseover="OnMouserOver" @onmouseout="OnMouseOut">
     <div class="card-body">
-        <div class="d-inline">
-            <bold>@Account.Type</bold>
-        </div>
-        <div class="d-inline">
+        <div class="d-inline"  @onclick="OnCardClick">
             @Account.Title
         </div>
         <div class="d-inline float-right">
             <div class="d-inline">
                 @($"{Account.Balance} {Account.Currency}")
             </div>
-            <div class="d-inline" style="font-size:15px;color:darkgrey;">
-                <span>...</span>
+            <div class="d-inline">
+                <ContextMenu/>
             </div>
         </div>
     </div>
