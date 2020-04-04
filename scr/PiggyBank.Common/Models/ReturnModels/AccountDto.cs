@@ -7,8 +7,8 @@ namespace PiggyBank.Common.Models.ReturnModels
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(2, ErrorMessage ="Title can't be empty")]
+        [Required(ErrorMessage = "Title can't be empty")]
+        [StringLength(200, MinimumLength = 2)]
         public string Title { get; set; }
 
         public AccountType Type { get; set; }

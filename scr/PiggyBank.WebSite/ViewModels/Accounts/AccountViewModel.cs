@@ -23,7 +23,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
         {
             if (Model.Id != default)
             {
-                await AccountService.UpdateAccountCommand(new UpdateAccountCommand
+                await AccountService.UpdateAccount(new UpdateAccountCommand
                 {
                     Balance = Model.Balance,
                     Currency = Model.Currency,

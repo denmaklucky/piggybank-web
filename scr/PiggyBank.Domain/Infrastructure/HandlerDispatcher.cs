@@ -14,7 +14,7 @@ namespace PiggyBank.Domain.Infrastructure
 
         public async Task Invoke<THandler, TCommand>(TCommand command) where THandler : BaseHandler<TCommand>
         {
-            var handler = (BaseHandler<TCommand>)Activator.CreateInstance(typeof(THandler), _context, command);
+            using var handler = (BaseHandler<TCommand>)Activator.CreateInstance(typeof(THandler), _context, command);
             try
             {
                 await handler.Invoke();

@@ -19,7 +19,7 @@ namespace PiggyBank.Domain.Queries.Accounts
             var query = GetRepository<Account>().GroupBy(a => a.Type)
             .Select(g => new
             {
-                Key = g.Key,
+                g.Key,
                 Account = g
             });
 

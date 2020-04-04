@@ -14,6 +14,9 @@ namespace PiggyBank.Domain.Services
         public Task AddAccount(AddAccountCommand command)
              => _handlerDispatcher.Invoke<AddAccountHandler, AddAccountCommand>(command);
 
+        public Task DeleteAccount(int id)
+            => _handlerDispatcher.Invoke<DeleteAccountHandler, int>(id);
+
         public Task<AccountDto> GetAccount(int accountId)
             => _queryDispatcher.Invoke<GetAccountByIdQuery, AccountDto>(accountId);
 
@@ -23,7 +26,7 @@ namespace PiggyBank.Domain.Services
         public Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType()
             => _queryDispatcher.Invoke<GetAccountsGroupByTypeQuery, GenericGroup<AccountType, AccountInfoDto>[]>();
 
-        public Task UpdateAccountCommand(UpdateAccountCommand command)
+        public Task UpdateAccount(UpdateAccountCommand command)
             => _handlerDispatcher.Invoke<UpdateAccountHandler, UpdateAccountCommand>(command);
     }
 }

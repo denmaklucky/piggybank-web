@@ -16,8 +16,6 @@ namespace PiggyBank.Domain.Infrastructure
             => _context.Set<T>();
 
         public void Dispose()
-        {
-            _context?.Dispose();
-        }
+            => _context?.Dispose();
     }
 }

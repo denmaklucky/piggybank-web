@@ -11,34 +11,31 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Add a new account
         /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         Task AddAccount(AddAccountCommand command);
 
         /// <summary>
         /// Get accounts
         /// </summary>
-        /// <returns></returns>
         Task<AccountInfoDto[]> GetAccounts();
 
         /// <summary>
         /// Get accounts group by type
         /// </summary>
-        /// <returns></returns>
         Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType();
 
         /// <summary>
         /// Get account by id
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         Task<AccountDto> GetAccount(int id);
 
         /// <summary>
         /// Update exists entity
         /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        Task UpdateAccountCommand(UpdateAccountCommand command);
+        Task UpdateAccount(UpdateAccountCommand command);
+
+        /// <summary>
+        /// Delete exists entiry
+        /// </summary>
+        Task DeleteAccount(int id);
     }
 }

@@ -18,7 +18,7 @@ namespace PiggyBank.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddTransient(x => new ServiceSettings
             {
                 ConnectionString = Configuration.GetConnectionString("dbConnection")
