@@ -19,8 +19,6 @@ namespace PiggyBank.Domain.Handler.Accounts
             if (account == null)
                 return;
 
-            account.IsArchived = Command.IsArchived;
-            account.IsDeleted = Command.IsDeleted;
             account.Title = Command.Title;
             account.Type = Command.Type;
             account.Balance = Command.Balance;

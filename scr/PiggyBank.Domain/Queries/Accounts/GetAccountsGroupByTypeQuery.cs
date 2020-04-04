@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PiggyBank.Common.Enums;
+using PiggyBank.Common.Models.Dto;
 using PiggyBank.Common.Models.Generic;
-using PiggyBank.Common.Models.ReturnModels;
 using PiggyBank.Model;
 using PiggyBank.Model.Models;
 using System;

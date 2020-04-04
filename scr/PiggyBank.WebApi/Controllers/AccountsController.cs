@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Common.Interfaces;
-using PiggyBank.Common.Models.ReturnModels;
+using PiggyBank.Common.Models.Dto;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -45,8 +45,6 @@ namespace PiggyBank.WebApi.Controllers
                 Balance = request.Balance,
                 Currency = request.Currency,
                 Id = request.Id,
-                IsArchived = request.IsArchived,
-                IsDeleted = request.IsDeleted,
                 Title = request.Title,
                 Type = request.Type
             };

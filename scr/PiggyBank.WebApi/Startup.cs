@@ -24,6 +24,7 @@ namespace PiggyBank.WebApi
                 ConnectionString = Configuration.GetConnectionString("dbConnection")
             });
             services.AddTransient<IAccountService, PiggyService>();
+            services.AddTransient<ICategoryService, PiggyService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

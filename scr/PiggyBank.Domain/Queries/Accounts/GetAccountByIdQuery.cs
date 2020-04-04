@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PiggyBank.Common.Models.ReturnModels;
+using PiggyBank.Common.Models.Dto;
 using PiggyBank.Model;
 using PiggyBank.Model.Models;
 using System.Linq;

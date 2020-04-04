@@ -14,7 +14,7 @@ namespace PiggyBank.Domain.Handler.Accounts
         {
             var repository = GetRepository<Account>();
             var account = await repository
-                .FirstOrDefaultAsync(a => a.Id == Command);
+                .FirstOrDefaultAsync(a => a.Id == Command && !a.IsDeleted);
 
             if (account == null)
                 return;

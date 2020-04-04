@@ -1,7 +1,7 @@
 ﻿using PiggyBank.Common.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace PiggyBank.Common.Models.ReturnModels
+namespace PiggyBank.Common.Models.Dto
 {
     public class AccountDto
     {

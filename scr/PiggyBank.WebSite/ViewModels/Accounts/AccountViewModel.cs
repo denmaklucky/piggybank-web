@@ -2,7 +2,7 @@
 using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Common.Enums;
 using PiggyBank.Common.Interfaces;
-using PiggyBank.Common.Models.ReturnModels;
+using PiggyBank.Common.Models.Dto;
 using System;
 using System.Threading.Tasks;
 

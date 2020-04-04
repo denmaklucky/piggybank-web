@@ -1,6 +1,6 @@
 ﻿using PiggyBank.Common.Enums;
 
-namespace PiggyBank.Common.Models.ReturnModels
+namespace PiggyBank.Common.Models.Dto
 {
     public class AccountInfoDto
     {

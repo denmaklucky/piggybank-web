@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using PiggyBank.Common.Interfaces;
-using PiggyBank.Common.Models.ReturnModels;
+using PiggyBank.Common.Models.Dto;
 using System.Linq;
 using System.Threading.Tasks;
 
