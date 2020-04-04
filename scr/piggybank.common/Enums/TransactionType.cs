@@ -2,7 +2,7 @@
 
 namespace PiggyBank.Common.Enums
 {
-    public enum TransactionType
+    public enum OperationType
     {
         [Description("Не определёно")]
         Undefined = 0,

@@ -20,7 +20,7 @@ namespace PiggyBank.Model.Models
 
         public string Comment { get; set; }
 
-        public TransactionType Type { get; set; }
+        public OperationType Type { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
         public virtual Category Category { get; set; }
