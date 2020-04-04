@@ -14,7 +14,7 @@ namespace PiggyBank.Domain.Queries.Accounts
             => _accountId = accountId;
 
         public override Task<AccountDto> Invoke()
-            => GetRepository<Account>().Where(a => a.Id == _accountId)
+            => GetRepository<Account>().Where(a => a.Id == _accountId && !a.IsDeleted)
             .Select(a => new AccountDto
             {
                 Id = a.Id,

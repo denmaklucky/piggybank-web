@@ -25,6 +25,7 @@ namespace PiggyBank.WebApi
             });
             services.AddTransient<IAccountService, PiggyService>();
             services.AddTransient<ICategoryService, PiggyService>();
+            services.AddTransient<IOperationService, PiggyService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

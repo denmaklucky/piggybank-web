@@ -1,4 +1,5 @@
-﻿using PiggyBank.Common.Models.Dto;
+﻿using PiggyBank.Common.Commands.Operations;
+using PiggyBank.Common.Models.Dto;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Common.Interfaces
@@ -6,9 +7,14 @@ namespace PiggyBank.Common.Interfaces
     public interface IOperationService
     {
         /// <summary>
-        /// Add a new operation
+        /// Add a new income operation
         /// </summary>
-        Task AddOperation(AddCategoryCommand command);
+        Task AddIncomeOperation(AddOperationCommand command);
+
+        /// <summary>
+        /// Add a new expense operation
+        /// </summary>
+        Task AddExpenseOperation(AddOperationCommand command);
 
         /// <summary>
         /// Get operations
@@ -23,6 +29,6 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Update exists entity
         /// </summary>
-        Task UpdateCategory(UpdateCategoryCommand command);
+        Task UpdateCategory(UpdateOperationCommand command);
     }
 }

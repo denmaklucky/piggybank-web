@@ -19,10 +19,7 @@ namespace PiggyBank.Common.Enums
         [Description("Корректировка остатка")]
         Correction = 4,
 
-        [Description("Долг")]
-        Debt = 5,
-
         [Description("Планируеммая транзакция")]
-        Plan = 6
+        Plan = 5
     }
 }

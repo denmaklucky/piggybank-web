@@ -11,6 +11,6 @@ namespace PiggyBank.Common.Enums
         Income,
 
         [Description("Расход")]
-        Expense,
+        Expense
     }
 }
