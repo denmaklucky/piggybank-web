@@ -21,7 +21,7 @@ namespace PiggyBank.Test.Handlers
         }
 
         [Fact]
-        public void GetRepositoryOkTest()
+        public void GetRepository_Normal_EntityFound()
         {
             using (var handler = new TestHandler(new object(), new PiggyContext(_options)))
             {
@@ -31,7 +31,7 @@ namespace PiggyBank.Test.Handlers
         }
 
         [Fact]
-        public void GetRepositoryExceptionTest()
+        public void GetRepository_EntityNotExists_ThrowsException()
         {
             using (var handler = new TestHandler(new object(), new PiggyContext(_options)))
             {
