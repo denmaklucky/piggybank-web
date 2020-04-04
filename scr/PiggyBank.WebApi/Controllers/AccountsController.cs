@@ -66,5 +66,12 @@ namespace PiggyBank.WebApi.Controllers
             await _service.DeleteAccount(accountId);
             return Ok();
         }
+
+        [HttpPatch, Route("{accountId}/archive")]
+        public async Task<IActionResult> Archive(int accountId, CancellationToken token)
+        {
+            await _service.ArchiveAccount(accountId);
+            return Ok();
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace PiggyBank.Test.Handlers
         {
             using (var handler = new TestHandler(new object(), new PiggyContext(_options)))
             {
-                var repository = handler.GetRepository<Transaction>();
+                var repository = handler.GetRepository<Operation>();
                 Assert.NotNull(repository);
             }
         }

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PiggyBank.Model.Models
 {
-    public class Transaction : EntityBase, IBaseModel
+    public class Operation : EntityBase, IBaseModel
     {
         [Key]
         public int Id { get; set; }

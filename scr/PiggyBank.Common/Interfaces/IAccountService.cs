@@ -34,8 +34,13 @@ namespace PiggyBank.Common.Interfaces
         Task UpdateAccount(UpdateAccountCommand command);
 
         /// <summary>
-        /// Delete exists entiry
+        /// Delete exists entity
         /// </summary>
         Task DeleteAccount(int id);
+
+        /// <summary>
+        /// Archive exists entity
+        /// </summary>
+        Task ArchiveAccount(int id);
     }
 }

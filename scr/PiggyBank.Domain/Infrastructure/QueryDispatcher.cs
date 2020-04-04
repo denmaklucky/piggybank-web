@@ -21,7 +21,7 @@ namespace PiggyBank.Domain.Infrastructure
         private async Task<TOutput> PrivateInvoke<TQuery, TOutput>(params object[] obj) where TQuery : BaseQuery<TOutput>
         {
             TOutput result;
-            var query = (TQuery)Activator.CreateInstance(typeof(TQuery), obj);
+            using var query = (TQuery)Activator.CreateInstance(typeof(TQuery), obj);
             try
             {
                 result = await query.Invoke();
@@ -30,10 +30,6 @@ namespace PiggyBank.Domain.Infrastructure
             {
                 Console.WriteLine(e);
                 throw;
-            }
-            finally
-            {
-                await _context.SaveChangesAsync();
             }
             return result;
         }

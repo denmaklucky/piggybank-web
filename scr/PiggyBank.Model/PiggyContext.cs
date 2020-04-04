@@ -11,6 +11,6 @@ namespace PiggyBank.Model
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Operation> Operations { get; set; }
     }
 }

@@ -14,6 +14,9 @@ namespace PiggyBank.Domain.Services
         public Task AddAccount(AddAccountCommand command)
              => _handlerDispatcher.Invoke<AddAccountHandler, AddAccountCommand>(command);
 
+        public Task ArchiveAccount(int id)
+            => _handlerDispatcher.Invoke<ArchiveAccountHandler, int>(id);
+
         public Task DeleteAccount(int id)
             => _handlerDispatcher.Invoke<DeleteAccountHandler, int>(id);
 
