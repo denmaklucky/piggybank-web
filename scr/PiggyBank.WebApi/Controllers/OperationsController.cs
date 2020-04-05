@@ -34,15 +34,15 @@ namespace PiggyBank.WebApi.Controllers
                 Type = request.Type
             };
 
-            switch (command.Type)
-            {
-                case Common.Enums.OperationType.Income:
-                    await _service.AddIncomeOperation(command);
-                    break;
-                case Common.Enums.OperationType.Expense:
-                    await _service.AddExpenseOperation(command);
-                    break;
-            }
+            //switch (command.Type)
+            //{
+            //    case Common.Enums.OperationType.Income:
+            //        await _service.AddIncomeOperation(command);
+            //        break;
+            //    case Common.Enums.OperationType.Expense:
+            //        await _service.AddExpenseOperation(command);
+            //        break;
+            //}
 
             return Ok();
         }

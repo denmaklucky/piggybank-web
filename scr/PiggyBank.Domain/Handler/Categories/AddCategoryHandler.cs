@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PiggyBank.Common.Commands.Categories;
 using PiggyBank.Model;
-using PiggyBank.Model.Models;
+using PiggyBank.Model.Models.Entities;
 
 namespace PiggyBank.Domain.Handler.Categories
 {

@@ -1,14 +1,10 @@
 ﻿using PiggyBank.Common.Enums;
-using PiggyBank.Model.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
-namespace PiggyBank.Model.Models
+namespace PiggyBank.Model.Models.Entities
 {
-    public class Account : EntityBase, IBaseModel
+    public class Account : DeletedEntityBase
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Title { get; set; }
 
@@ -17,9 +13,5 @@ namespace PiggyBank.Model.Models
         public string Currency { get; set; }
 
         public decimal Balance { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public bool IsArchived { get; set; }
     }
 }

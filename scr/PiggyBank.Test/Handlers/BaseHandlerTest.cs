@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PiggyBank.Domain.Handler;
 using PiggyBank.Model;
 using PiggyBank.Model.Interfaces;
-using PiggyBank.Model.Models;
+using PiggyBank.Model.Models.Entities;
 using Xunit;
 
 namespace PiggyBank.Test.Handlers

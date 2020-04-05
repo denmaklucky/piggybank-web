@@ -3,7 +3,7 @@ using PiggyBank.Common.Enums;
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.Common.Models.Generic;
 using PiggyBank.Model;
-using PiggyBank.Model.Models;
+using PiggyBank.Model.Models.Entities;
 using System;
 using System.Linq;
 using System.Threading.Tasks;

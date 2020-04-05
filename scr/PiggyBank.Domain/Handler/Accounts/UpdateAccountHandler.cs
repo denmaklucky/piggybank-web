@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Model;
-using PiggyBank.Model.Models;
+using PiggyBank.Model.Models.Entities;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Handler.Accounts

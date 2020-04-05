@@ -15,12 +15,12 @@ namespace PiggyBank.Model.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    IsArchived = table.Column<bool>(nullable: false),
+                    Title = table.Column<string>(nullable: false),
                     Type = table.Column<int>(nullable: false),
                     Currency = table.Column<string>(nullable: true),
-                    Balance = table.Column<decimal>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    IsArchived = table.Column<bool>(nullable: false)
+                    Balance = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,11 +35,11 @@ namespace PiggyBank.Model.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    IsArchived = table.Column<bool>(nullable: false),
                     Title = table.Column<string>(nullable: false),
                     HexColor = table.Column<string>(nullable: false),
-                    Type = table.Column<int>(nullable: false),
-                    IsArchived = table.Column<bool>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false)
+                    Type = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,30 +47,57 @@ namespace PiggyBank.Model.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transactions",
+                name: "BalanceHistories",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     CreatedBy = table.Column<Guid>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false),
-                    Amount = table.Column<decimal>(nullable: false),
-                    AccountId = table.Column<int>(nullable: false),
-                    Comment = table.Column<string>(nullable: true),
-                    Type = table.Column<int>(nullable: false)
+                    Value = table.Column<decimal>(nullable: false),
+                    AccountId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Transactions", x => x.Id);
+                    table.PrimaryKey("PK_BalanceHistories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Transactions_Accounts_AccountId",
+                        name: "FK_BalanceHistories_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Operations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    CreatedBy = table.Column<Guid>(nullable: false),
+                    Comment = table.Column<string>(nullable: true),
+                    Type = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: true),
+                    Amount = table.Column<decimal>(nullable: true),
+                    AccountId = table.Column<int>(nullable: true),
+                    PlanDate = table.Column<DateTime>(nullable: true),
+                    From = table.Column<int>(nullable: true),
+                    To = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Operations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Operations_Accounts_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Transactions_Categories_CategoryId",
+                        name: "FK_Operations_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
@@ -78,20 +105,28 @@ namespace PiggyBank.Model.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_AccountId",
-                table: "Transactions",
+                name: "IX_BalanceHistories_AccountId",
+                table: "BalanceHistories",
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transactions_CategoryId",
-                table: "Transactions",
+                name: "IX_Operations_AccountId",
+                table: "Operations",
+                column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Operations_CategoryId",
+                table: "Operations",
                 column: "CategoryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Transactions");
+                name: "BalanceHistories");
+
+            migrationBuilder.DropTable(
+                name: "Operations");
 
             migrationBuilder.DropTable(
                 name: "Accounts");

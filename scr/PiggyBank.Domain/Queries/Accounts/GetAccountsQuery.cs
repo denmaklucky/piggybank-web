@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.Model;
-using PiggyBank.Model.Models;
+using PiggyBank.Model.Models.Entities;
 
 namespace PiggyBank.Domain.Queries.Accounts
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.Model;
-using PiggyBank.Model.Models;
+using PiggyBank.Model.Models.Entities;
 using System.Linq;
 using System.Threading.Tasks;
 

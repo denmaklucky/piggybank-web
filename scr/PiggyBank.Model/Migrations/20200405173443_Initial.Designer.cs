@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PiggyBank.Model;
 
 namespace PiggyBank.Model.Migrations
 {
     [DbContext(typeof(PiggyContext))]
-    partial class PiggyContextModelSnapshot : ModelSnapshot
+    [Migration("20200405173443_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,6 +194,12 @@ namespace PiggyBank.Model.Migrations
                     b.Property<DateTime>("PlanDate")
                         .HasColumnType("datetime2");
 
+                    b.HasIndex("AccountId")
+                        .HasName("IX_Operations_AccountId1");
+
+                    b.HasIndex("CategoryId")
+                        .HasName("IX_Operations_CategoryId1");
+
                     b.HasDiscriminator().HasValue("PlanOperation");
                 });
 
@@ -232,6 +240,23 @@ namespace PiggyBank.Model.Migrations
                     b.HasOne("PiggyBank.Model.Models.Entities.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PiggyBank.Model.Models.Entities.PlanOperation", b =>
+                {
+                    b.HasOne("PiggyBank.Model.Models.Entities.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .HasConstraintName("FK_Operations_Accounts_AccountId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PiggyBank.Model.Models.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .HasConstraintName("FK_Operations_Categories_CategoryId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

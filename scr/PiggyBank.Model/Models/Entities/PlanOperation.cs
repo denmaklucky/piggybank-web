@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PiggyBank.Model.Models
+namespace PiggyBank.Model.Models.Entities
 {
-    public class BudgetOperation : Operation
+    public class PlanOperation : Operation
     {
+        [Required]
+        public DateTime PlanDate { get; set; }
+
         [Required]
         public int CategoryId { get; set; }
 

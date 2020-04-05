@@ -13,9 +13,6 @@ namespace PiggyBank.Common.Enums
         [Description("Transfer")]
         Transfer = 2,
 
-        [Description("Adjusting the balance")]
-        Correction = 2,
-
         [Description("The planned transaction")]
         Plan = 3
     }
