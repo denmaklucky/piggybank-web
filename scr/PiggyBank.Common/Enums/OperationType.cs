@@ -4,22 +4,19 @@ namespace PiggyBank.Common.Enums
 {
     public enum OperationType
     {
-        [Description("Не определёно")]
+        [Description("Undefined")]
         Undefined = 0,
 
-        [Description("Доход")]
-        Income = 1,
+        [Description("Income and Expenses")]
+        Budget = 1,
 
-        [Description("Расход")]
-        Expense = 2,
+        [Description("Transfer")]
+        Transfer = 2,
 
-        [Description("Перевод")]
-        Transfer = 3,
+        [Description("Adjusting the balance")]
+        Correction = 2,
 
-        [Description("Корректировка остатка")]
-        Correction = 4,
-
-        [Description("Планируеммая транзакция")]
-        Plan = 5
+        [Description("The planned transaction")]
+        Plan = 3
     }
 }

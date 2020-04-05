@@ -4,13 +4,13 @@ namespace PiggyBank.Common.Enums
 {
     public enum CategoryType
     {
-        [Description("Не определёно")]
+        [Description("Undefined")]
         Undefined = 0,
 
-        [Description("Доход")]
+        [Description("Income")]
         Income,
 
-        [Description("Расход")]
+        [Description("Expense")]
         Expense
     }
 }

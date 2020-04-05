@@ -4,19 +4,16 @@ namespace PiggyBank.Common.Enums
 {
     public enum AccountType
     {
-        [Description("Не определёно")]
+        [Description("Undefined")]
         Undefined = 0,
 
-        [Description("Наличные")]
+        [Description("Cash")]
         Cash,
 
-        [Description("Банковская карта")]
+        [Description("Card")]
         Card,
 
-        [Description("Банковский счет")]
-        BankAccount,
-
-        [Description("Депозит")]
-        Deposit
+        [Description("Bank account")]
+        BankAccount
     }
 }
