@@ -17,6 +17,16 @@ namespace PiggyBank.Common.Interfaces
         Task AddTransferOperation(AddTransferOperationCommand command);
 
         /// <summary>
+        /// Add a new plan operation
+        /// </summary>
+        Task AddPlanOperation(AddPlanOperationCommand command);
+
+        /// <summary>
+        /// Apply exists plan operation
+        /// </summary>
+        Task ApplyPlanOperation(int planOperationId);
+
+        /// <summary>
         /// Get operations
         /// </summary>
         Task<OperationDto[]> GetOperations();

@@ -24,7 +24,9 @@ namespace PiggyBank.Domain.Handler.Operations
             var operation = new TransferOperation
             {
                 Amount = Command.Amount,
-                Type = OperationType.Transfer
+                Type = OperationType.Transfer,
+                From = Command.From,
+                To = Command.To
             };
 
             fromAccount.ChangeBalance(-Command.Amount);

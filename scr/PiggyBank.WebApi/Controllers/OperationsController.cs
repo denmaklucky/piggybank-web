@@ -53,5 +53,30 @@ namespace PiggyBank.WebApi.Controllers
 
             return Ok();
         }
+
+        [HttpPost, Route("plan")]
+        public async Task<IActionResult> PostPlan(PlanOperationDto request, CancellationToken token)
+        {
+            var command = new AddPlanOperationCommand
+            {
+                Amount = request.Amount,
+                CategoryId = request.CategoryId,
+                Comment = request.Comment,
+                Type = request.Type,
+                PlanDate = request.PlanDate,
+                AccountId = request.AccountId
+            };
+
+            await _service.AddPlanOperation(command);
+
+            return Ok();
+        }
+
+        [HttpPost, Route("plan/{operationId}/apply")]
+        public async Task<IActionResult> ApplyPlanOperation(int operationId, CancellationToken token)
+        {
+            await _service.ApplyPlanOperation(operationId);
+            return Ok();
+        }
     }
 }

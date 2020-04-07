@@ -20,4 +20,8 @@
     <ProjectReference Include="..\PiggyBank.Domain\PiggyBank.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Handlers\Operations\" />
+  </ItemGroup>
+
 </Project>

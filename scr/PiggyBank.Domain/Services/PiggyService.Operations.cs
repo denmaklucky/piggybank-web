@@ -13,8 +13,14 @@ namespace PiggyBank.Domain.Services
         public Task AddBudgetOperation(AddBudgetOperationCommand command)
             => _handlerDispatcher.Invoke<AddBudgetOperationHandler, AddBudgetOperationCommand>(command);
 
+        public Task AddPlanOperation(AddPlanOperationCommand command)
+            => _handlerDispatcher.Invoke<AddPlanOperationHandler, AddPlanOperationCommand>(command);
+
         public Task AddTransferOperation(AddTransferOperationCommand command)
             => _handlerDispatcher.Invoke<AddTransferOperationHandler, AddTransferOperationCommand>(command);
+
+        public Task ApplyPlanOperation(int planOperationId)
+            => _handlerDispatcher.Invoke<ApplyPlanOperationHandler, int>(planOperationId);
 
         public Task<OperationDto> GetOperation(int id)
             => _queryDispatcher.Invoke<GetOperationByIdQuery, OperationDto>(id);
