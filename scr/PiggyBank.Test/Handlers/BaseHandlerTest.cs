@@ -23,21 +23,17 @@ namespace PiggyBank.Test.Handlers
         [Fact]
         public void GetRepository_Normal_EntityFound()
         {
-            using (var handler = new TestHandler(new object(), new PiggyContext(_options)))
-            {
-                var repository = handler.GetRepository<Operation>();
-                Assert.NotNull(repository);
-            }
+            using var handler = new TestHandler(new object(), new PiggyContext(_options));
+            var repository = handler.GetRepository<Operation>();
+            Assert.NotNull(repository);
         }
 
         [Fact]
         public void GetRepository_EntityNotExists_ThrowsException()
         {
-            using (var handler = new TestHandler(new object(), new PiggyContext(_options)))
-            {
-                var temp = handler.GetRepository<TestModel>();
-                Assert.Throws<InvalidOperationException>(() => { temp.CountAsync(); });
-            }
+            using var handler = new TestHandler(new object(), new PiggyContext(_options));
+            var temp = handler.GetRepository<TestModel>();
+            Assert.Throws<InvalidOperationException>(() => { temp.CountAsync(); });
         }
     }
 
