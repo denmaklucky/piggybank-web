@@ -7,14 +7,14 @@ namespace PiggyBank.Common.Interfaces
     public interface IOperationService
     {
         /// <summary>
-        /// Add a new income operation
+        /// Add a new budget operation
         /// </summary>
-        Task AddIncomeOperation(AddOperationCommand command);
+        Task AddBudgetOperation(AddBudgetOperationCommand command);
 
         /// <summary>
-        /// Add a new expense operation
+        /// Add a new transfer operation
         /// </summary>
-        Task AddExpenseOperation(AddOperationCommand command);
+        Task AddTransferOperation(AddTransferOperationCommand command);
 
         /// <summary>
         /// Get operations

@@ -22,10 +22,10 @@ namespace PiggyBank.WebApi.Controllers
         public Task<OperationDto> GetById(int operationId, CancellationToken token)
             => _service.GetOperation(operationId);
 
-        [HttpPost]
-        public async Task<IActionResult> Post(OperationDto request, CancellationToken token)
+        [HttpPost, Route("budget")]
+        public async Task<IActionResult> PostBudget(OperationDto request, CancellationToken token)
         {
-            var command = new AddOperationCommand
+            var command = new AddBudgetOperationCommand
             {
                 AccountId = request.AccountId,
                 Amount = request.Amount,
@@ -34,15 +34,22 @@ namespace PiggyBank.WebApi.Controllers
                 Type = request.Type
             };
 
-            //switch (command.Type)
-            //{
-            //    case Common.Enums.OperationType.Income:
-            //        await _service.AddIncomeOperation(command);
-            //        break;
-            //    case Common.Enums.OperationType.Expense:
-            //        await _service.AddExpenseOperation(command);
-            //        break;
-            //}
+            await _service.AddBudgetOperation(command);
+
+            return Ok();
+        }
+
+        [HttpPost, Route("transfer")]
+        public async Task<IActionResult> PostTransfer(TransferOperationDto request, CancellationToken token)
+        {
+            var command = new AddTransferOperationCommand
+            {
+                Amount = request.Amount,
+                From = request.From,
+                To = request.To
+            };
+
+            await _service.AddTransferOperation(command);
 
             return Ok();
         }

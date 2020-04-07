@@ -10,11 +10,11 @@ namespace PiggyBank.Domain.Services
 {
     public partial class PiggyService : IOperationService
     {
-        public Task AddExpenseOperation(AddOperationCommand command)
-            => _handlerDispatcher.Invoke<AddExpenseOperationHandler, AddOperationCommand>(command);
+        public Task AddBudgetOperation(AddBudgetOperationCommand command)
+            => _handlerDispatcher.Invoke<AddBudgetOperationHandler, AddBudgetOperationCommand>(command);
 
-        public Task AddIncomeOperation(AddOperationCommand command)
-            => _handlerDispatcher.Invoke<AddIncomeOperationHandler, AddOperationCommand>(command);
+        public Task AddTransferOperation(AddTransferOperationCommand command)
+            => _handlerDispatcher.Invoke<AddTransferOperationHandler, AddTransferOperationCommand>(command);
 
         public Task<OperationDto> GetOperation(int id)
             => _queryDispatcher.Invoke<GetOperationByIdQuery, OperationDto>(id);

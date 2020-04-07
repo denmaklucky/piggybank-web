@@ -173,28 +173,6 @@ namespace PiggyBank.Model.Migrations
                     b.HasDiscriminator().HasValue("BudgetOperation");
                 });
 
-            modelBuilder.Entity("PiggyBank.Model.Models.Entities.PlanOperation", b =>
-                {
-                    b.HasBaseType("PiggyBank.Model.Models.Entities.Operation");
-
-                    b.Property<int>("AccountId")
-                        .HasColumnName("AccountId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnName("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnName("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PlanDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasDiscriminator().HasValue("PlanOperation");
-                });
-
             modelBuilder.Entity("PiggyBank.Model.Models.Entities.TransferOperation", b =>
                 {
                     b.HasBaseType("PiggyBank.Model.Models.Entities.Operation");
@@ -212,10 +190,20 @@ namespace PiggyBank.Model.Migrations
                     b.HasDiscriminator().HasValue("TransferOperation");
                 });
 
+            modelBuilder.Entity("PiggyBank.Model.Models.Entities.PlanOperation", b =>
+                {
+                    b.HasBaseType("PiggyBank.Model.Models.Entities.BudgetOperation");
+
+                    b.Property<DateTime>("PlanDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasDiscriminator().HasValue("PlanOperation");
+                });
+
             modelBuilder.Entity("PiggyBank.Model.Models.Entities.BalanceHistory", b =>
                 {
                     b.HasOne("PiggyBank.Model.Models.Entities.Account", "Account")
-                        .WithMany()
+                        .WithMany("BalanceHistories")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
