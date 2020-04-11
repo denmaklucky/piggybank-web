@@ -5,31 +5,32 @@ using PiggyBank.Common.Models.Dto;
 using PiggyBank.Common.Models.Generic;
 using PiggyBank.Domain.Handler.Accounts;
 using PiggyBank.Domain.Queries.Accounts;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Services
 {
     public partial class PiggyService : IAccountService
     {
-        public Task AddAccount(AddAccountCommand command)
-             => _handlerDispatcher.Invoke<AddAccountHandler, AddAccountCommand>(command);
+        public Task AddAccount(AddAccountCommand command, CancellationToken token)
+             => _handlerDispatcher.Invoke<AddAccountHandler, AddAccountCommand>(command, token);
 
-        public Task ArchiveAccount(int id)
-            => _handlerDispatcher.Invoke<ArchiveAccountHandler, int>(id);
+        public Task ArchiveAccount(int id, CancellationToken token)
+            => _handlerDispatcher.Invoke<ArchiveAccountHandler, int>(id, token);
 
-        public Task DeleteAccount(int id)
-            => _handlerDispatcher.Invoke<DeleteAccountHandler, int>(id);
+        public Task DeleteAccount(int id, CancellationToken token)
+            => _handlerDispatcher.Invoke<DeleteAccountHandler, int>(id, token);
 
-        public Task<AccountDto> GetAccount(int accountId)
+        public Task<AccountDto> GetAccount(int accountId, CancellationToken token)
             => _queryDispatcher.Invoke<GetAccountByIdQuery, AccountDto>(accountId);
 
-        public Task<AccountInfoDto[]> GetAccounts()
+        public Task<AccountInfoDto[]> GetAccounts(CancellationToken token)
             => _queryDispatcher.Invoke<GetAccountsQuery, AccountInfoDto[]>();
 
-        public Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType()
+        public Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType(CancellationToken token)
             => _queryDispatcher.Invoke<GetAccountsGroupByTypeQuery, GenericGroup<AccountType, AccountInfoDto>[]>();
 
-        public Task UpdateAccount(UpdateAccountCommand command)
-            => _handlerDispatcher.Invoke<UpdateAccountHandler, UpdateAccountCommand>(command);
+        public Task UpdateAccount(UpdateAccountCommand command, CancellationToken token)
+            => _handlerDispatcher.Invoke<UpdateAccountHandler, UpdateAccountCommand>(command, token);
     }
 }

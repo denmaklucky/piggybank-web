@@ -1,5 +1,6 @@
 ﻿using PiggyBank.Common.Commands.Operations;
 using PiggyBank.Common.Models.Dto;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Common.Interfaces
@@ -9,36 +10,36 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Add a new budget operation
         /// </summary>
-        Task AddBudgetOperation(AddBudgetOperationCommand command);
+        Task AddBudgetOperation(AddBudgetOperationCommand command, CancellationToken token);
 
         /// <summary>
         /// Add a new transfer operation
         /// </summary>
-        Task AddTransferOperation(AddTransferOperationCommand command);
+        Task AddTransferOperation(AddTransferOperationCommand command, CancellationToken token);
 
         /// <summary>
         /// Add a new plan operation
         /// </summary>
-        Task AddPlanOperation(AddPlanOperationCommand command);
+        Task AddPlanOperation(AddPlanOperationCommand command, CancellationToken token);
 
         /// <summary>
         /// Apply exists plan operation
         /// </summary>
-        Task ApplyPlanOperation(int planOperationId);
+        Task ApplyPlanOperation(int planOperationId, CancellationToken token);
 
         /// <summary>
         /// Get operations
         /// </summary>
-        Task<OperationDto[]> GetOperations();
+        Task<OperationDto[]> GetOperations(CancellationToken token);
 
         /// <summary>
         /// Get operation by id
         /// </summary>
-        Task<OperationDto> GetOperation(int id);
+        Task<OperationDto> GetOperation(int id, CancellationToken token);
 
         /// <summary>
         /// Update exists entity
         /// </summary>
-        Task UpdateCategory(UpdateOperationCommand command);
+        Task UpdateCategory(UpdateOperationCommand command, CancellationToken token);
     }
 }

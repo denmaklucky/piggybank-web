@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
@@ -10,7 +11,7 @@ namespace PiggyBank.Domain.Handler.Accounts
         public AddAccountHandler(PiggyContext context, AddAccountCommand command)
             : base(context, command) { }
 
-        public override async Task Invoke()
+        public override async Task Invoke(CancellationToken token)
         {
             await GetRepository<Account>().AddAsync(new Account
             {
@@ -20,7 +21,7 @@ namespace PiggyBank.Domain.Handler.Accounts
                 IsDeleted = Command.IsDeleted,
                 Title = Command.Title,
                 Type = Command.Type
-            });
+            }, token);
         }
     }
 }

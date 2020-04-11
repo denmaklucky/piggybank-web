@@ -2,6 +2,7 @@
 using PiggyBank.Common.Commands.Categories;
 using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Handler.Categories
@@ -11,7 +12,7 @@ namespace PiggyBank.Domain.Handler.Categories
         public UpdateCategoryHandler(PiggyContext context, UpdateCategoryCommand command)
             : base(context, command) { }
 
-        public override async Task Invoke()
+        public override async Task Invoke(CancellationToken token)
         {
             var repository = GetRepository<Category>();
             var category = await repository

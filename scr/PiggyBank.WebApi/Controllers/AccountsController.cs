@@ -17,7 +17,7 @@ namespace PiggyBank.WebApi.Controllers
 
         [HttpGet]
         public Task<AccountInfoDto[]> Get(CancellationToken token)
-            => _service.GetAccounts();
+            => _service.GetAccounts(token);
 
         [HttpPost]
         public async Task<IActionResult> Post(AccountDto request, CancellationToken token)
@@ -32,7 +32,7 @@ namespace PiggyBank.WebApi.Controllers
                 Type = request.Type
             };
 
-            await _service.AddAccount(command);
+            await _service.AddAccount(command, token);
 
             return Ok();
         }
@@ -49,26 +49,26 @@ namespace PiggyBank.WebApi.Controllers
                 Type = request.Type
             };
 
-            await _service.UpdateAccount(command);
+            await _service.UpdateAccount(command, token);
 
             return Ok();
         }
 
         [HttpGet, Route("{accountId}")]
         public Task<AccountDto> GetById(int accountId, CancellationToken token)
-            => _service.GetAccount(accountId);
+            => _service.GetAccount(accountId, token);
 
         [HttpDelete, Route("{accountId}/delete")]
         public async Task<IActionResult> Delete(int accountId, CancellationToken token)
         {
-            await _service.DeleteAccount(accountId);
+            await _service.DeleteAccount(accountId, token);
             return Ok();
         }
 
         [HttpPatch, Route("{accountId}/archive")]
         public async Task<IActionResult> Archive(int accountId, CancellationToken token)
         {
-            await _service.ArchiveAccount(accountId);
+            await _service.ArchiveAccount(accountId, token);
             return Ok();
         }
     }

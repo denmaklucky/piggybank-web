@@ -2,6 +2,7 @@
 using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Handler.Accounts
@@ -11,7 +12,7 @@ namespace PiggyBank.Domain.Handler.Accounts
         public UpdateAccountHandler(PiggyContext context, UpdateAccountCommand command)
             : base(context, command) { }
 
-        public override async Task Invoke()
+        public override async Task Invoke(CancellationToken token)
         {
             var account = await GetRepository<Account>()
                 .FirstOrDefaultAsync(a => a.Id == Command.Id);

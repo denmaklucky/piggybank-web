@@ -1,6 +1,7 @@
 ﻿using PiggyBank.Model;
 using System.Threading.Tasks;
 using PiggyBank.Domain.Infrastructure;
+using System.Threading;
 
 namespace PiggyBank.Domain.Handler
 {
@@ -11,6 +12,6 @@ namespace PiggyBank.Domain.Handler
         protected BaseHandler(PiggyContext context, TCommand command) : base(context)
         => Command = command;
 
-        public abstract Task Invoke();
+        public abstract Task Invoke(CancellationToken token);
     }
 }

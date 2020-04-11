@@ -17,11 +17,11 @@ namespace PiggyBank.WebApi.Controllers
 
         [HttpGet]
         public Task<CategoryDto[]> Get(CancellationToken token)
-            => _service.GetCategories();
+            => _service.GetCategories(token);
 
         [HttpGet, Route("{categoryId}")]
         public Task<CategoryDto> GetById(int categoryId, CancellationToken token)
-            => _service.GetCategory(categoryId);
+            => _service.GetCategory(categoryId, token);
 
         [HttpPost]
         public async Task<IActionResult> Post(CategoryDto request, CancellationToken token)
@@ -33,7 +33,7 @@ namespace PiggyBank.WebApi.Controllers
                 Type = request.Type
             };
 
-            await _service.AddCategory(command);
+            await _service.AddCategory(command, token);
             return Ok();
         }
 
@@ -48,7 +48,7 @@ namespace PiggyBank.WebApi.Controllers
                 HexColor = request.HexColor
             };
 
-            await _service.UpdateCategory(command);
+            await _service.UpdateCategory(command, token);
 
             return Ok();
         }
@@ -56,14 +56,14 @@ namespace PiggyBank.WebApi.Controllers
         [HttpDelete, Route("{categoryId}/delete")]
         public async Task<IActionResult> Delete(int categoryId, CancellationToken token)
         {
-            await _service.DeleteCategory(categoryId);
+            await _service.DeleteCategory(categoryId, token);
             return Ok();
         }
 
         [HttpPatch, Route("{categoryId}/archive")]
         public async Task<IActionResult> Archive(int categoryId, CancellationToken token)
         {
-            await _service.ArchiveCategory(categoryId);
+            await _service.ArchiveCategory(categoryId, token);
             return Ok();
         }
     }

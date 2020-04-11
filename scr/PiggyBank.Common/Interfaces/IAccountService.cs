@@ -2,6 +2,7 @@
 using PiggyBank.Common.Enums;
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.Common.Models.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Common.Interfaces
@@ -11,36 +12,36 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Add a new account
         /// </summary>
-        Task AddAccount(AddAccountCommand command);
+        Task AddAccount(AddAccountCommand command, CancellationToken token);
 
         /// <summary>
         /// Get accounts
         /// </summary>
-        Task<AccountInfoDto[]> GetAccounts();
+        Task<AccountInfoDto[]> GetAccounts(CancellationToken token);
 
         /// <summary>
         /// Get accounts group by type
         /// </summary>
-        Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType();
+        Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType(CancellationToken token);
 
         /// <summary>
         /// Get account by id
         /// </summary>
-        Task<AccountDto> GetAccount(int id);
+        Task<AccountDto> GetAccount(int id, CancellationToken token);
 
         /// <summary>
         /// Update exists entity
         /// </summary>
-        Task UpdateAccount(UpdateAccountCommand command);
+        Task UpdateAccount(UpdateAccountCommand command, CancellationToken token);
 
         /// <summary>
         /// Delete exists entity
         /// </summary>
-        Task DeleteAccount(int id);
+        Task DeleteAccount(int id, CancellationToken token);
 
         /// <summary>
         /// Archive exists entity
         /// </summary>
-        Task ArchiveAccount(int id);
+        Task ArchiveAccount(int id, CancellationToken token);
     }
 }

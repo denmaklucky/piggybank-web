@@ -4,6 +4,7 @@ using PiggyBank.Common.Enums;
 using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Handler.Operations
@@ -13,7 +14,7 @@ namespace PiggyBank.Domain.Handler.Operations
         public AddPlanOperationHandler(PiggyContext context, AddPlanOperationCommand command)
             : base(context, command) { }
 
-        public override async Task Invoke()
+        public override async Task Invoke(CancellationToken token)
         {
             var accountRepository = GetRepository<Account>();
 
@@ -34,7 +35,7 @@ namespace PiggyBank.Domain.Handler.Operations
                 CreatedOn = DateTime.UtcNow
             };
 
-            GetRepository<PlanOperation>().Add(operation);
+            await GetRepository<PlanOperation>().AddAsync(operation, token);
         }
     }
 }

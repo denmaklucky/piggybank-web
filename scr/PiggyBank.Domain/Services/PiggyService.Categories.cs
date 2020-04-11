@@ -3,28 +3,29 @@ using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.Domain.Handler.Categories;
 using PiggyBank.Domain.Queries.Categories;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.Domain.Services
 {
     public partial class PiggyService : ICategoryService
     {
-        public Task AddCategory(AddCategoryCommand command)
-            => _handlerDispatcher.Invoke<AddCategoryHandler, AddCategoryCommand>(command);
+        public Task AddCategory(AddCategoryCommand command, CancellationToken token)
+            => _handlerDispatcher.Invoke<AddCategoryHandler, AddCategoryCommand>(command, token);
 
-        public Task ArchiveCategory(int id)
-            => _handlerDispatcher.Invoke<ArchiveCategoryHandler, int>(id);
+        public Task ArchiveCategory(int id, CancellationToken token)
+            => _handlerDispatcher.Invoke<ArchiveCategoryHandler, int>(id, token);
 
-        public Task DeleteCategory(int id)
-            => _handlerDispatcher.Invoke<DeleteCategoryHandler, int>(id);
+        public Task DeleteCategory(int id, CancellationToken token)
+            => _handlerDispatcher.Invoke<DeleteCategoryHandler, int>(id, token);
 
-        public Task<CategoryDto[]> GetCategories()
+        public Task<CategoryDto[]> GetCategories(CancellationToken token)
             => _queryDispatcher.Invoke<GetCategoriesQuery, CategoryDto[]>();
 
-        public Task<CategoryDto> GetCategory(int id)
+        public Task<CategoryDto> GetCategory(int id, CancellationToken token)
             => _queryDispatcher.Invoke<GetCategoryByIdQuery, CategoryDto>(id);
 
-        public Task UpdateCategory(UpdateCategoryCommand command)
-            => _handlerDispatcher.Invoke<UpdateCategoryHandler, UpdateCategoryCommand>(command);
+        public Task UpdateCategory(UpdateCategoryCommand command, CancellationToken token)
+            => _handlerDispatcher.Invoke<UpdateCategoryHandler, UpdateCategoryCommand>(command, token);
     }
 }
