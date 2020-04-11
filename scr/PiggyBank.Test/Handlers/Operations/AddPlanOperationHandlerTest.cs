@@ -16,7 +16,7 @@ namespace PiggyBank.Test.Handlers.Operations
         private readonly PiggyContext _context;
         public AddPlanOperationHandlerTest()
             => _context = new PiggyContext(new DbContextOptionsBuilder<PiggyContext>()
-                .UseInMemoryDatabase(databaseName: "PlaneOperation_InMemory").Options);
+                .UseInMemoryDatabase(databaseName: "PlanOperation_InMemory").Options);
 
         [Fact]
         public async Task Invoke_ByDefault_OperationWasAdded()
