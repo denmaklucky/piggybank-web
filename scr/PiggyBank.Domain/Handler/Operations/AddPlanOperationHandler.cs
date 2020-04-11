@@ -32,8 +32,6 @@ namespace PiggyBank.Domain.Handler.Operations
                 PlanDate = Command.PlanDate
             };
 
-            accountRepository.Update(account);
-
             GetRepository<PlanOperation>().Add(operation);
         }
     }

@@ -14,9 +14,10 @@ namespace PiggyBank.Test.Handlers.Operations
     public class AddBudgetOperationHandlerTest : IDisposable
     {
         private readonly PiggyContext _context;
+
         public AddBudgetOperationHandlerTest()
             => _context = new PiggyContext(new DbContextOptionsBuilder<PiggyContext>()
-                .UseInMemoryDatabase(databaseName: "PiggyBank_InMemory").Options);
+                .UseInMemoryDatabase(databaseName: "BudgetOperation_InMemory").Options);
 
         [Fact]
         public async Task Invoke_OperationIsValid_OperationWasAdded()
@@ -151,14 +152,13 @@ namespace PiggyBank.Test.Handlers.Operations
             };
 
             _context.Accounts.Add(account);
-
             _context.Categories.Add(new Category
             {
                 Id = 1,
                 Type = CategoryType.Expense
             });
-
             _context.SaveChanges();
+
             var handler = new AddBudgetOperationHandler(_context, addOperaion);
             await handler.Invoke();
 
