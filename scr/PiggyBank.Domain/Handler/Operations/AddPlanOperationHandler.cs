@@ -16,6 +16,7 @@ namespace PiggyBank.Domain.Handler.Operations
         public override async Task Invoke()
         {
             var accountRepository = GetRepository<Account>();
+
             var account = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.AccountId && !a.IsDeleted)
                 ?? throw new ArgumentException($"Can't found account by {Command.AccountId}");
 
@@ -29,7 +30,8 @@ namespace PiggyBank.Domain.Handler.Operations
                 Comment = Command.Comment,
                 AccountId = Command.AccountId,
                 CategoryId = Command.CategoryId,
-                PlanDate = Command.PlanDate
+                PlanDate = Command.PlanDate,
+                CreatedOn = DateTime.UtcNow
             };
 
             GetRepository<PlanOperation>().Add(operation);

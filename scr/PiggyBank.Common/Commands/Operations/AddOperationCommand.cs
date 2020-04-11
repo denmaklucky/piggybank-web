@@ -11,7 +11,5 @@ namespace PiggyBank.Common.Commands.Operations
         public int AccountId { get; set; }
 
         public string Comment { get; set; }
-
-        public OperationType Type { get; set; }
     }
 }

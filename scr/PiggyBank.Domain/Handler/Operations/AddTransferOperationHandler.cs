@@ -16,8 +16,10 @@ namespace PiggyBank.Domain.Handler.Operations
         public override async Task Invoke()
         {
             var accountRepository = GetRepository<Account>();
+
             var fromAccount = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.From && !a.IsDeleted)
                 ?? throw new ArgumentException($"Can't found account by {Command.From}");
+
             var toAccount = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.To && !a.IsDeleted)
                 ?? throw new ArgumentException($"Can't found account by {Command.To}");
 
@@ -26,7 +28,9 @@ namespace PiggyBank.Domain.Handler.Operations
                 Amount = Command.Amount,
                 Type = OperationType.Transfer,
                 From = Command.From,
-                To = Command.To
+                To = Command.To,
+                CreatedOn = DateTime.UtcNow,
+                Comment = Command.Comment
             };
 
             fromAccount.ChangeBalance(-Command.Amount);

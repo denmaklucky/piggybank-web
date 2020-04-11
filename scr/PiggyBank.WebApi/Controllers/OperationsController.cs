@@ -18,20 +18,15 @@ namespace PiggyBank.WebApi.Controllers
         public Task<OperationDto[]> Get(CancellationToken token)
             => _service.GetOperations();
 
-        [HttpGet, Route("{operationId}")]
-        public Task<OperationDto> GetById(int operationId, CancellationToken token)
-            => _service.GetOperation(operationId);
-
         [HttpPost, Route("budget")]
-        public async Task<IActionResult> PostBudget(OperationDto request, CancellationToken token)
+        public async Task<IActionResult> PostBudget(BudgetOperationDto request, CancellationToken token)
         {
             var command = new AddBudgetOperationCommand
             {
                 AccountId = request.AccountId,
                 Amount = request.Amount,
                 CategoryId = request.CategoryId,
-                Comment = request.Comment,
-                Type = request.Type
+                Comment = request.Comment
             };
 
             await _service.AddBudgetOperation(command);
@@ -46,7 +41,8 @@ namespace PiggyBank.WebApi.Controllers
             {
                 Amount = request.Amount,
                 From = request.From,
-                To = request.To
+                To = request.To,
+                Comment = request.Comment
             };
 
             await _service.AddTransferOperation(command);
@@ -62,7 +58,6 @@ namespace PiggyBank.WebApi.Controllers
                 Amount = request.Amount,
                 CategoryId = request.CategoryId,
                 Comment = request.Comment,
-                Type = request.Type,
                 PlanDate = request.PlanDate,
                 AccountId = request.AccountId
             };

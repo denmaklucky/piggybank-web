@@ -25,10 +25,11 @@ namespace PiggyBank.Domain.Handler.Operations
             var operation = new BudgetOperation
             {
                 Amount = Command.Amount,
-                Type = Command.Type,
+                Type = OperationType.Budget,
                 Comment = Command.Comment,
                 AccountId = Command.AccountId,
-                CategoryId = Command.CategoryId
+                CategoryId = Command.CategoryId,
+                CreatedOn = DateTime.UtcNow,
             };
 
             account.ChangeBalance(category.Type == CategoryType.Income ? operation.Amount : -operation.Amount);

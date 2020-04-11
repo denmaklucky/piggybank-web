@@ -7,5 +7,7 @@
         public int To { get; set; }
 
         public decimal Amount { get; set; }
+
+        public string Comment { get; set; }
     }
 }

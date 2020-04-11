@@ -2,13 +2,13 @@
 
 namespace PiggyBank.Common.Models.Dto
 {
-    public class TransferOperationDto
+    public class BudgetOperationDto
     {
         [Required]
-        public int From { get; set; }
+        public int AccountId { get; set; }
 
         [Required]
-        public int To { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         public decimal Amount { get; set; }
