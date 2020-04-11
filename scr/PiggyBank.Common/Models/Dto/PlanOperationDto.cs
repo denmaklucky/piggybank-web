@@ -6,6 +6,6 @@ namespace PiggyBank.Common.Models.Dto
     public class PlanOperationDto : BudgetOperationDto
     {
         [Required]
-        public DateTime PlanDate { get; set; }
+        public DateTime? PlanDate { get; set; }
     }
 }

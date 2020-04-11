@@ -2,6 +2,7 @@
 using PiggyBank.Common.Commands.Operations;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,7 +25,7 @@ namespace PiggyBank.WebApi.Controllers
             var command = new AddBudgetOperationCommand
             {
                 AccountId = request.AccountId,
-                Amount = request.Amount,
+                Amount = request.Amount ?? decimal.Zero,
                 CategoryId = request.CategoryId,
                 Comment = request.Comment
             };
@@ -39,7 +40,7 @@ namespace PiggyBank.WebApi.Controllers
         {
             var command = new AddTransferOperationCommand
             {
-                Amount = request.Amount,
+                Amount = request.Amount ?? decimal.Zero,
                 From = request.From,
                 To = request.To,
                 Comment = request.Comment
@@ -55,10 +56,10 @@ namespace PiggyBank.WebApi.Controllers
         {
             var command = new AddPlanOperationCommand
             {
-                Amount = request.Amount,
+                Amount = request.Amount ?? decimal.Zero,
                 CategoryId = request.CategoryId,
                 Comment = request.Comment,
-                PlanDate = request.PlanDate,
+                PlanDate = request.PlanDate ?? DateTime.MinValue,
                 AccountId = request.AccountId
             };
 
