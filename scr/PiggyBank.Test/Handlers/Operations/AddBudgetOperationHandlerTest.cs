@@ -93,13 +93,16 @@ namespace PiggyBank.Test.Handlers.Operations
             await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke());
         }
 
-        [Fact]
-        public async Task Invoke_WhenCallWithIncomeCategory_BalancePluse()
+        [Theory]
+        [InlineData(100, 0, 100)]
+        [InlineData(100, 200, 300)]
+        [InlineData(100, -100, 0)]
+        public async Task Invoke_WhenCallWithIncomeCategory_BalancePluse(decimal amount, decimal accountBalance, decimal resultBalance)
         {
             var addOperaion = new AddBudgetOperationCommand
             {
                 AccountId = 1,
-                Amount = 100,
+                Amount = amount,
                 CategoryId = 1,
                 Comment = "Hello, world",
                 Type = OperationType.Budget
@@ -108,7 +111,7 @@ namespace PiggyBank.Test.Handlers.Operations
             var account = new Account
             {
                 Id = 1,
-                Balance = 0
+                Balance = accountBalance
             };
 
             _context.Accounts.Add(account);
@@ -123,16 +126,19 @@ namespace PiggyBank.Test.Handlers.Operations
             var handler = new AddBudgetOperationHandler(_context, addOperaion);
             await handler.Invoke();
 
-            Assert.Equal(100, account.Balance);
+            Assert.Equal(resultBalance, account.Balance);
         }
 
-        [Fact]
-        public async Task Invoke_WhenCallWithExpenseCategory_BalanceMinus()
+        [Theory]
+        [InlineData(100, 0, -100)]
+        [InlineData(100, 200, 100)]
+        [InlineData(100, 100, 0)]
+        public async Task Invoke_WhenCallWithExpenseCategory_BalanceMinus(decimal amount, decimal accountBalance, decimal resultBalance)
         {
             var addOperaion = new AddBudgetOperationCommand
             {
                 AccountId = 1,
-                Amount = 100,
+                Amount = amount,
                 CategoryId = 1,
                 Comment = "Hello, world",
                 Type = OperationType.Budget
@@ -141,7 +147,7 @@ namespace PiggyBank.Test.Handlers.Operations
             var account = new Account
             {
                 Id = 1,
-                Balance = 0
+                Balance = accountBalance
             };
 
             _context.Accounts.Add(account);
@@ -156,7 +162,7 @@ namespace PiggyBank.Test.Handlers.Operations
             var handler = new AddBudgetOperationHandler(_context, addOperaion);
             await handler.Invoke();
 
-            Assert.Equal(-100, account.Balance);
+            Assert.Equal(resultBalance, account.Balance);
         }
 
         public void Dispose()
