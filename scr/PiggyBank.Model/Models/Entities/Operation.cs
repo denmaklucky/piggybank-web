@@ -9,5 +9,7 @@ namespace PiggyBank.Model.Models.Entities
         public OperationType Type { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public string Shapshot { get; set; }
     }
 }

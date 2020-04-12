@@ -17,12 +17,19 @@ namespace PiggyBank.Domain.Handler.Operations
         {
             var budget = GetRepository<BudgetOperation>();
             var plan = GetRepository<PlanOperation>();
+            var accounts = GetRepository<Account>();
 
             var operation = await plan.FirstOrDefaultAsync(p => p.Id == Command)
             ?? throw new ArgumentException("Can't found plan operaton");
 
             operation.IsDeleted = true;
             plan.Update(operation);
+
+            var account = await accounts.FirstOrDefaultAsync(a => a.Id == operation.AccountId && !a.IsDeleted, token)
+                ?? throw new ArgumentException($"Can't found account by {operation.AccountId}");
+
+            var category = await GetRepository<Category>().FirstOrDefaultAsync(c => c.Id == operation.CategoryId && !c.IsDeleted, token)
+                ?? throw new ArgumentException($"Can't found category by {operation.CategoryId}");
 
             await budget.AddAsync(new BudgetOperation
             {
@@ -32,8 +39,13 @@ namespace PiggyBank.Domain.Handler.Operations
                 Comment = operation.Comment,
                 CreatedBy = operation.CreatedBy,
                 CreatedOn = operation.CreatedOn,
-                Type = OperationType.Budget
+                Type = OperationType.Budget,
+                Shapshot = operation.Shapshot
             }, token);
+
+            account.ChangeBalance(category.Type == CategoryType.Income ? operation.Amount : -operation.Amount);
+
+            accounts.Update(account);
         }
     }
 }

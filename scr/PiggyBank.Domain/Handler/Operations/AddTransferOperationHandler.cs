@@ -18,10 +18,10 @@ namespace PiggyBank.Domain.Handler.Operations
         {
             var accountRepository = GetRepository<Account>();
 
-            var fromAccount = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.From && !a.IsDeleted)
+            var fromAccount = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.From && !a.IsDeleted, token)
                 ?? throw new ArgumentException($"Can't found account by {Command.From}");
 
-            var toAccount = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.To && !a.IsDeleted)
+            var toAccount = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.To && !a.IsDeleted, token)
                 ?? throw new ArgumentException($"Can't found account by {Command.To}");
 
             var operation = new TransferOperation

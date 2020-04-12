@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using PiggyBank.Common.Commands.Operations;
 using PiggyBank.Common.Enums;
+using PiggyBank.Domain.Models.Operations;
 using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
 using System;
@@ -18,11 +20,16 @@ namespace PiggyBank.Domain.Handler.Operations
         {
             var accountRepository = GetRepository<Account>();
 
-            var account = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.AccountId && !a.IsDeleted)
+            var account = await accountRepository.FirstOrDefaultAsync(a => a.Id == Command.AccountId && !a.IsDeleted, token)
                 ?? throw new ArgumentException($"Can't found account by {Command.AccountId}");
 
-            var category = await GetRepository<Category>().FirstOrDefaultAsync(c => c.Id == Command.CategoryId && !c.IsDeleted)
+            var category = await GetRepository<Category>().FirstOrDefaultAsync(c => c.Id == Command.CategoryId && !c.IsDeleted, token)
                 ?? throw new ArgumentException($"Can't found category by {Command.CategoryId}");
+
+            var shapshot = new OperationShapshot
+            {
+                CategoryType = category.Type
+            };
 
             var operation = new PlanOperation
             {
@@ -32,7 +39,8 @@ namespace PiggyBank.Domain.Handler.Operations
                 AccountId = Command.AccountId,
                 CategoryId = Command.CategoryId,
                 PlanDate = Command.PlanDate,
-                CreatedOn = DateTime.UtcNow
+                CreatedOn = DateTime.UtcNow,
+                Shapshot = JsonConvert.SerializeObject(shapshot)
             };
 
             await GetRepository<PlanOperation>().AddAsync(operation, token);
