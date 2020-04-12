@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Domain.Infrastructure;
 using PiggyBank.Domain.Services;
@@ -26,6 +27,11 @@ namespace PiggyBank.WebApi
             services.AddTransient<IAccountService, PiggyService>();
             services.AddTransient<ICategoryService, PiggyService>();
             services.AddTransient<IOperationService, PiggyService>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PiggyBank API", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,6 +43,12 @@ namespace PiggyBank.WebApi
 
             //app.UseAuthorization();
             //app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "PiggyBank V1");
+            });
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
