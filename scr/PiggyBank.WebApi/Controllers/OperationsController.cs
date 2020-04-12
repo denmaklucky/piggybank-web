@@ -19,6 +19,8 @@ namespace PiggyBank.WebApi.Controllers
         public Task<OperationDto[]> Get(CancellationToken token)
             => _service.GetOperations(token);
 
+        #region Budget
+
         [HttpPost, Route("budget")]
         public async Task<IActionResult> PostBudget(BudgetOperationDto request, CancellationToken token)
         {
@@ -35,6 +37,15 @@ namespace PiggyBank.WebApi.Controllers
             return Ok();
         }
 
+        [HttpDelete, Route("budget/{operationId}/delete")]
+        public async Task<IActionResult> DelteBudgetOperation(int operationId, CancellationToken token)
+        {
+            await _service.DeleteBudgetOperation(operationId, token);
+            return Ok();
+        }
+
+        #endregion
+
         [HttpPost, Route("transfer")]
         public async Task<IActionResult> PostTransfer(TransferOperationDto request, CancellationToken token)
         {
@@ -50,6 +61,8 @@ namespace PiggyBank.WebApi.Controllers
 
             return Ok();
         }
+
+        #region Plan
 
         [HttpPost, Route("plan")]
         public async Task<IActionResult> PostPlan(PlanOperationDto request, CancellationToken token)
@@ -74,5 +87,7 @@ namespace PiggyBank.WebApi.Controllers
             await _service.ApplyPlanOperation(operationId, token);
             return Ok();
         }
+
+        #endregion
     }
 }

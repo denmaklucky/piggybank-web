@@ -40,6 +40,11 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Update exists entity
         /// </summary>
-        Task UpdateCategory(UpdateOperationCommand command, CancellationToken token);
+        Task UpdateOperation(UpdateOperationCommand command, CancellationToken token);
+
+        /// <summary>
+        /// Delete budget operation
+        /// </summary>
+        Task DeleteBudgetOperation(int id, CancellationToken token);
     }
 }

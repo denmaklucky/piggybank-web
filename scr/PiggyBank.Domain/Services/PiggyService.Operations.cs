@@ -23,13 +23,16 @@ namespace PiggyBank.Domain.Services
         public Task ApplyPlanOperation(int planOperationId, CancellationToken token)
             => _handlerDispatcher.Invoke<ApplyPlanOperationHandler, int>(planOperationId, token);
 
+        public Task DeleteBudgetOperation(int id, CancellationToken token)
+            => _handlerDispatcher.Invoke<DeleteBudgetOperationHanlder, int>(id, token);
+
         public Task<OperationDto> GetOperation(int id, CancellationToken token)
             => _queryDispatcher.Invoke<GetOperationByIdQuery, OperationDto>(id);
 
         public Task<OperationDto[]> GetOperations(CancellationToken token)
             => _queryDispatcher.Invoke<GetOperationsQuery, OperationDto[]>();
 
-        public Task UpdateCategory(UpdateOperationCommand command, CancellationToken token)
+        public Task UpdateOperation(UpdateOperationCommand command, CancellationToken token)
         {
             throw new NotImplementedException();
         }
