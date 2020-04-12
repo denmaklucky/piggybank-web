@@ -5,6 +5,7 @@ using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -38,7 +39,7 @@ namespace PiggyBank.Test.Handlers.Operations
             };
 
             await new AddTransferOperationHandler(_context, command)
-                .Invoke();
+                .Invoke(CancellationToken.None);
 
             Assert.Equal(fromResult, _context.Accounts.First(a => a.Id == 1).Balance);
         }
@@ -55,7 +56,7 @@ namespace PiggyBank.Test.Handlers.Operations
 
             var handler = new AddTransferOperationHandler(_context, command);
 
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke());
+            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke(CancellationToken.None));
         }
 
         [Fact]
@@ -76,7 +77,7 @@ namespace PiggyBank.Test.Handlers.Operations
 
             var handler = new AddTransferOperationHandler(_context, command);
 
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke());
+            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke(CancellationToken.None));
         }
 
         public void Dispose()

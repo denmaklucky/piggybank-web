@@ -6,6 +6,7 @@ using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -32,12 +33,11 @@ namespace PiggyBank.Test.Handlers.Operations
                 CategoryId = 1,
                 Amount = 100,
                 Comment = "Hello, world",
-                PlanDate = now,
-                Type = OperationType.Plan
+                PlanDate = now
             };
 
             await new AddPlanOperationHandler(_context, command)
-                .Invoke();
+                .Invoke(CancellationToken.None);
 
             _context.SaveChanges();
 
@@ -54,13 +54,12 @@ namespace PiggyBank.Test.Handlers.Operations
                 CategoryId = 1,
                 Amount = 100,
                 Comment = "Hello, world",
-                PlanDate = now,
-                Type = OperationType.Plan
+                PlanDate = now
             };
 
             var handler = new AddPlanOperationHandler(_context, command);
 
-            await Assert.ThrowsAnyAsync<ArgumentException>(() => handler.Invoke());
+            await Assert.ThrowsAnyAsync<ArgumentException>(() => handler.Invoke(CancellationToken.None));
         }
 
         [Fact]
@@ -76,13 +75,12 @@ namespace PiggyBank.Test.Handlers.Operations
                 CategoryId = 1,
                 Amount = 100,
                 Comment = "Hello, world",
-                PlanDate = now,
-                Type = OperationType.Plan
+                PlanDate = now
             };
 
             var handler = new AddPlanOperationHandler(_context, command);
 
-            await Assert.ThrowsAnyAsync<ArgumentException>(() => handler.Invoke());
+            await Assert.ThrowsAnyAsync<ArgumentException>(() => handler.Invoke(CancellationToken.None));
         }
 
         public void Dispose()

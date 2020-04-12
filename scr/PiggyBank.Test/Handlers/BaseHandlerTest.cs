@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PiggyBank.Domain.Handler;
@@ -9,21 +10,19 @@ using Xunit;
 
 namespace PiggyBank.Test.Handlers
 {
-    public class BaseHandlerTest
+    public class BaseHandlerTest : IDisposable
     {
-        private readonly DbContextOptions<PiggyContext> _options;
+        private readonly PiggyContext _context;
 
         public BaseHandlerTest()
-        {
-            _options = new DbContextOptionsBuilder<PiggyContext>()
+            => _context = new PiggyContext(new DbContextOptionsBuilder<PiggyContext>()
                 .UseInMemoryDatabase(databaseName: "PiggyBank_InMemory")
-                .Options;
-        }
+                .Options);
 
         [Fact]
         public void GetRepository_Normal_EntityFound()
         {
-            using var handler = new TestHandler(new object(), new PiggyContext(_options));
+            using var handler = new TestHandler(new object(), _context);
             var repository = handler.GetRepository<Operation>();
             Assert.NotNull(repository);
         }
@@ -31,16 +30,19 @@ namespace PiggyBank.Test.Handlers
         [Fact]
         public void GetRepository_EntityNotExists_ThrowsException()
         {
-            using var handler = new TestHandler(new object(), new PiggyContext(_options));
+            using var handler = new TestHandler(new object(), _context);
             var temp = handler.GetRepository<TestModel>();
             Assert.Throws<InvalidOperationException>(() => { temp.CountAsync(); });
         }
+
+        public void Dispose()
+            => _context.Dispose();
     }
 
     public class TestHandler : BaseHandler<object>
     {
         public TestHandler(object obj, PiggyContext context) : base(context, obj) { }
-        public override Task Invoke()
+        public override Task Invoke(CancellationToken token)
         {
             throw new NotImplementedException();
         }

@@ -6,6 +6,7 @@ using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -27,8 +28,7 @@ namespace PiggyBank.Test.Handlers.Operations
                 AccountId = 1,
                 Amount = 100,
                 CategoryId = 1,
-                Comment = "Hello, world",
-                Type = OperationType.Budget
+                Comment = "Hello, world"
             };
 
             _context.Accounts.Add(new Account
@@ -45,7 +45,7 @@ namespace PiggyBank.Test.Handlers.Operations
             _context.SaveChanges();
 
             var handler = new AddBudgetOperationHandler(_context, addOperaion);
-            await handler.Invoke();
+            await handler.Invoke(CancellationToken.None);
             _context.SaveChanges();
 
             var operation = _context.BudgetOperations.First();
@@ -62,12 +62,11 @@ namespace PiggyBank.Test.Handlers.Operations
                 AccountId = 1,
                 Amount = 100,
                 CategoryId = 1,
-                Comment = "Hello, world",
-                Type = OperationType.Budget
+                Comment = "Hello, world"
             };
 
             var handler = new AddBudgetOperationHandler(_context, addOperaion);
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke());
+            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke(CancellationToken.None));
         }
 
         [Fact]
@@ -78,8 +77,7 @@ namespace PiggyBank.Test.Handlers.Operations
                 AccountId = 1,
                 Amount = 100,
                 CategoryId = 1,
-                Comment = "Hello, world",
-                Type = OperationType.Budget
+                Comment = "Hello, world"
             };
 
             _context.Accounts.Add(new Account
@@ -91,7 +89,7 @@ namespace PiggyBank.Test.Handlers.Operations
             _context.SaveChanges();
             var handler = new AddBudgetOperationHandler(_context, addOperaion);
 
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke());
+            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke(CancellationToken.None));
         }
 
         [Theory]
@@ -105,8 +103,7 @@ namespace PiggyBank.Test.Handlers.Operations
                 AccountId = 1,
                 Amount = amount,
                 CategoryId = 1,
-                Comment = "Hello, world",
-                Type = OperationType.Budget
+                Comment = "Hello, world"
             };
 
             var account = new Account
@@ -125,7 +122,7 @@ namespace PiggyBank.Test.Handlers.Operations
 
             _context.SaveChanges();
             var handler = new AddBudgetOperationHandler(_context, addOperaion);
-            await handler.Invoke();
+            await handler.Invoke(CancellationToken.None);
 
             Assert.Equal(resultBalance, account.Balance);
         }
@@ -141,8 +138,7 @@ namespace PiggyBank.Test.Handlers.Operations
                 AccountId = 1,
                 Amount = amount,
                 CategoryId = 1,
-                Comment = "Hello, world",
-                Type = OperationType.Budget
+                Comment = "Hello, world"
             };
 
             var account = new Account
@@ -160,7 +156,7 @@ namespace PiggyBank.Test.Handlers.Operations
             _context.SaveChanges();
 
             var handler = new AddBudgetOperationHandler(_context, addOperaion);
-            await handler.Invoke();
+            await handler.Invoke(CancellationToken.None);
 
             Assert.Equal(resultBalance, account.Balance);
         }

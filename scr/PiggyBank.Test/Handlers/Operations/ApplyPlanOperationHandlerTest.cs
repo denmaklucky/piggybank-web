@@ -5,6 +5,7 @@ using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -38,7 +39,7 @@ namespace PiggyBank.Test.Handlers.Operations
             });
             _context.SaveChanges();
 
-            await new ApplyPlanOperationHandler(_context, 1).Invoke();
+            await new ApplyPlanOperationHandler(_context, 1).Invoke(CancellationToken.None);
             _context.SaveChanges();
 
             var planOperation = _context.PlanOperations.First(p => p.Id == 1);
@@ -55,7 +56,7 @@ namespace PiggyBank.Test.Handlers.Operations
         public async Task Invoke_PlanOperationIdIsInvalid_ThrowsException()
         {
             var handler = new ApplyPlanOperationHandler(_context, 1);
-            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke());
+            await Assert.ThrowsAsync<ArgumentException>(() => handler.Invoke(CancellationToken.None));
         }
 
         public void Dispose()
