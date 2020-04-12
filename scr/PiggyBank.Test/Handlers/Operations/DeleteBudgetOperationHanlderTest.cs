@@ -32,7 +32,7 @@ namespace PiggyBank.Test.Handlers.Operations
                 Amount = amount,
                 CategoryId = 1,
                 IsDeleted = false,
-                Shapshot = JsonConvert.SerializeObject(new OperationShapshot { CategoryType = categoryType })
+                Shapshot = JsonConvert.SerializeObject(new OperationSnapshot { CategoryType = categoryType })
             });
             _context.SaveChanges();
 
@@ -57,7 +57,7 @@ namespace PiggyBank.Test.Handlers.Operations
                 Amount = 100,
                 CategoryId = 1,
                 IsDeleted = false,
-                Shapshot = JsonConvert.SerializeObject(new OperationShapshot { CategoryType = CategoryType.Income })
+                Shapshot = JsonConvert.SerializeObject(new OperationSnapshot { CategoryType = CategoryType.Income })
             });
             _context.SaveChanges();
 
@@ -82,7 +82,7 @@ namespace PiggyBank.Test.Handlers.Operations
                 Amount = 100,
                 CategoryId = 1,
                 IsDeleted = false,
-                Shapshot = JsonConvert.SerializeObject(new OperationShapshot { CategoryType = CategoryType.Income })
+                Shapshot = JsonConvert.SerializeObject(new OperationSnapshot { CategoryType = CategoryType.Income })
             });
             _context.SaveChanges();
 

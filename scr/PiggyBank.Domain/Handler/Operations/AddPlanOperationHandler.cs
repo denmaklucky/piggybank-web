@@ -26,7 +26,7 @@ namespace PiggyBank.Domain.Handler.Operations
             var category = await GetRepository<Category>().FirstOrDefaultAsync(c => c.Id == Command.CategoryId && !c.IsDeleted, token)
                 ?? throw new ArgumentException($"Can't found category by {Command.CategoryId}");
 
-            var shapshot = new OperationShapshot
+            var shapshot = new OperationSnapshot
             {
                 CategoryType = category.Type
             };

@@ -46,5 +46,15 @@ namespace PiggyBank.Common.Interfaces
         /// Delete budget operation
         /// </summary>
         Task DeleteBudgetOperation(int id, CancellationToken token);
+
+        /// <summary>
+        /// Delete plan operation
+        /// </summary>
+        Task DeletePlanOperation(int operationId, CancellationToken token);
+
+        /// <summary>
+        /// Delee transfer operation
+        /// </summary>
+        Task DeleteTransferOperation(int operationId, CancellationToken token);
     }
 }

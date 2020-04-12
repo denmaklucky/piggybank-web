@@ -26,6 +26,12 @@ namespace PiggyBank.Domain.Services
         public Task DeleteBudgetOperation(int id, CancellationToken token)
             => _handlerDispatcher.Invoke<DeleteBudgetOperationHanlder, int>(id, token);
 
+        public Task DeletePlanOperation(int operationId, CancellationToken token)
+            => _handlerDispatcher.Invoke<DeletePlanOperationHandler, int>(operationId, token);
+
+        public Task DeleteTransferOperation(int operationId, CancellationToken token)
+            => _handlerDispatcher.Invoke<DeleteTransferOperationHandler, int>(operationId, token);
+
         public Task<OperationDto> GetOperation(int id, CancellationToken token)
             => _queryDispatcher.Invoke<GetOperationByIdQuery, OperationDto>(id);
 

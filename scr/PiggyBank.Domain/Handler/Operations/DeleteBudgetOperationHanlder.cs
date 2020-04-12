@@ -33,7 +33,7 @@ namespace PiggyBank.Domain.Handler.Operations
 
             if (account != null)
             {
-                var shapshot = JsonConvert.DeserializeObject<OperationShapshot>(operation.Shapshot);
+                var shapshot = JsonConvert.DeserializeObject<OperationSnapshot>(operation.Shapshot);
 
                 account.ChangeBalance(shapshot.CategoryType == CategoryType.Income ? -operation.Amount : operation.Amount);
                 accountRepository.Update(account);

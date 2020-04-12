@@ -2,7 +2,7 @@
 
 namespace PiggyBank.Domain.Models.Operations
 {
-    public class OperationShapshot
+    public class OperationSnapshot
     {
         public CategoryType CategoryType { get; set; }
     }
