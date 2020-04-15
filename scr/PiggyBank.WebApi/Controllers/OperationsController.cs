@@ -17,7 +17,6 @@ namespace PiggyBank.WebApi.Controllers
             => _service = service;
 
         [HttpGet]
-        [Authorize]
         public Task<OperationDto[]> Get(CancellationToken token)
             => _service.GetOperations(token);
 

@@ -7,7 +7,7 @@ using Microsoft.OpenApi.Models;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Domain.Infrastructure;
 using PiggyBank.Domain.Services;
-using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
 
 namespace PiggyBank.WebApi
 {
@@ -32,13 +32,20 @@ namespace PiggyBank.WebApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PiggyBank API", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme 
+
+                var scheme = new OpenApiSecurityScheme
                 {
                     Description = "Standard Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
                     In = ParameterLocation.Header,
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey
-                });
+                };
+
+                c.AddSecurityDefinition("Bearer", scheme);
+
+                var security = new OpenApiSecurityRequirement();
+                security.Add(scheme, new List<string> { "Bearer" });
+                c.AddSecurityRequirement(security);
             });
 
             services.AddAuthentication("Bearer")
