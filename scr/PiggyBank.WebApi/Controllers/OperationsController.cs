@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PiggyBank.Common.Commands.Operations;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
@@ -16,6 +17,7 @@ namespace PiggyBank.WebApi.Controllers
             => _service = service;
 
         [HttpGet]
+        [Authorize]
         public Task<OperationDto[]> Get(CancellationToken token)
             => _service.GetOperations(token);
 

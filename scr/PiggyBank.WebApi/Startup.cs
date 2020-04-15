@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Domain.Infrastructure;
 using PiggyBank.Domain.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace PiggyBank.WebApi
 {
@@ -31,6 +32,21 @@ namespace PiggyBank.WebApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PiggyBank API", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme 
+                {
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+            });
+
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "https://localhost:44340/";
+                options.RequireHttpsMetadata = false;
+                options.Audience = "api1";
             });
         }
 
@@ -41,9 +57,6 @@ namespace PiggyBank.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseAuthorization();
-            //app.UseHttpsRedirection();
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -51,6 +64,11 @@ namespace PiggyBank.WebApi
             });
 
             app.UseRouting();
+            //app.UseHttpsRedirection();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
