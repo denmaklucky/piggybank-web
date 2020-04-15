@@ -11,7 +11,6 @@ namespace PiggyBank.IdentityServer
         public Startup(IConfiguration configuration)
             => _configuration = configuration;
 
-
         public void ConfigureServices(IServiceCollection services)
         {
             var builder = services.AddIdentityServer()
