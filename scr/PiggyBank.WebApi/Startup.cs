@@ -43,9 +43,20 @@ namespace PiggyBank.WebApi
 
                 c.AddSecurityDefinition("Bearer", scheme);
 
-                var security = new OpenApiSecurityRequirement();
-                security.Add(scheme, new List<string> { "Bearer" });
-                c.AddSecurityRequirement(security);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                          {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                }
+                          },
+                            new string[] {}
+                    }
+                });
             });
 
             services.AddAuthentication("Bearer")

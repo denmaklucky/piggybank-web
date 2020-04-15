@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PiggyBank.WebApi.Controllers
 {
+    [Authorize]
     [ApiController, Route("api/[controller]")]
     public class OperationsController : ControllerBase
     {
