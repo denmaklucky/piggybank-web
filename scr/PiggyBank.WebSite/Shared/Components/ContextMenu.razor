@@ -1,15 +1,23 @@
 ﻿<div class="btn-group" role="group">
     <div class="btn-group" role="group">
-        <button id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button id="btnGroupDrop1" type="button" @onclick="OnClick">
             ...
         </button>
-        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-            <a class="dropdown-item" href="#">Dropdown link</a>
-            <a class="dropdown-item" href="#">Dropdown link</a>
+        <div class="dropdown-menu @DropdownMenuClass" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item">Dropdown link</a>
+            <a class="dropdown-item">Dropdown link</a>
         </div>
     </div>
 </div>
 
 @code {
 
+    private bool _isDropDown = false;
+
+    public string DropdownMenuClass => _isDropDown ? "show" : "";
+
+    public void OnClick()
+    {
+        _isDropDown = !_isDropDown;
+    }
 }
