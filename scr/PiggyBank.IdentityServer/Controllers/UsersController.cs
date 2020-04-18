@@ -16,7 +16,14 @@ namespace PiggyBank.IdentityServer.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(UserDto request, CancellationToken token)
         {
-            await Task.Delay(100);
+            var user = new IdentityUser { UserName = request.UserName };
+            var result = await _userManager.CreateAsync(user, request.Password);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
             return Ok();
         }
     }

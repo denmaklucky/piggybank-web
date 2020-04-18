@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PiggyBank.IdentityServer.Models;
@@ -21,9 +22,17 @@ namespace PiggyBank.IdentityServer
 
             builder.AddDeveloperSigningCredential();
 
-            //services.AddDbContext<IndeintityContext>(opt => opt.);
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddDbContext<IndeintityContext>(opt => opt.UseSqlServer("Server=(local)\\SQL2016;Database=PiggyBank;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            services.AddIdentity<IdentityUser, IdentityRole>(opt => 
+            {
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+            })
                 .AddEntityFrameworkStores<IndeintityContext>();
+
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
