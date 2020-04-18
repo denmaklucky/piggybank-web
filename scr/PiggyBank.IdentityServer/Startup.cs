@@ -22,15 +22,15 @@ namespace PiggyBank.IdentityServer
 
             builder.AddDeveloperSigningCredential();
 
+            //UserManager
             services.AddDbContext<IndeintityContext>(opt => opt.UseSqlServer("Server=(local)\\SQL2016;Database=PiggyBank;Trusted_Connection=True;MultipleActiveResultSets=true"));
-            services.AddIdentity<IdentityUser, IdentityRole>(opt => 
+            services.AddIdentity<IdentityUser, IdentityRole>(opt =>
             {
                 opt.Password.RequireDigit = false;
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequireUppercase = false;
-            })
-                .AddEntityFrameworkStores<IndeintityContext>();
+            }).AddEntityFrameworkStores<IndeintityContext>();
 
             services.AddControllers();
         }
