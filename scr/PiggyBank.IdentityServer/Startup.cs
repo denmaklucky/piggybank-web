@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PiggyBank.IdentityServer.Models;
 
 namespace PiggyBank.IdentityServer
 {
@@ -18,11 +20,21 @@ namespace PiggyBank.IdentityServer
                 .AddInMemoryClients(Config.Clients);
 
             builder.AddDeveloperSigningCredential();
+
+            //services.AddDbContext<IndeintityContext>(opt => opt.);
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<IndeintityContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseIdentityServer();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
