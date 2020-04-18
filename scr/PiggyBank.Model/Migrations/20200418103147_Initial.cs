@@ -7,8 +7,12 @@ namespace PiggyBank.Model.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "Pb");
+
             migrationBuilder.CreateTable(
                 name: "Accounts",
+                schema: "Pb",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -29,6 +33,7 @@ namespace PiggyBank.Model.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Categories",
+                schema: "Pb",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -48,6 +53,7 @@ namespace PiggyBank.Model.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BalanceHistories",
+                schema: "Pb",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -63,6 +69,7 @@ namespace PiggyBank.Model.Migrations
                     table.ForeignKey(
                         name: "FK_BalanceHistories_Accounts_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "Pb",
                         principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -70,6 +77,7 @@ namespace PiggyBank.Model.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Operations",
+                schema: "Pb",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -79,6 +87,7 @@ namespace PiggyBank.Model.Migrations
                     Comment = table.Column<string>(nullable: true),
                     Type = table.Column<int>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    Shapshot = table.Column<string>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
                     CategoryId = table.Column<int>(nullable: true),
                     Amount = table.Column<decimal>(nullable: true),
@@ -93,12 +102,14 @@ namespace PiggyBank.Model.Migrations
                     table.ForeignKey(
                         name: "FK_Operations_Accounts_AccountId",
                         column: x => x.AccountId,
+                        principalSchema: "Pb",
                         principalTable: "Accounts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Operations_Categories_CategoryId",
                         column: x => x.CategoryId,
+                        principalSchema: "Pb",
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -106,16 +117,19 @@ namespace PiggyBank.Model.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_BalanceHistories_AccountId",
+                schema: "Pb",
                 table: "BalanceHistories",
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Operations_AccountId",
+                schema: "Pb",
                 table: "Operations",
                 column: "AccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Operations_CategoryId",
+                schema: "Pb",
                 table: "Operations",
                 column: "CategoryId");
         }
@@ -123,16 +137,20 @@ namespace PiggyBank.Model.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BalanceHistories");
+                name: "BalanceHistories",
+                schema: "Pb");
 
             migrationBuilder.DropTable(
-                name: "Operations");
+                name: "Operations",
+                schema: "Pb");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "Accounts",
+                schema: "Pb");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Categories",
+                schema: "Pb");
         }
     }
 }

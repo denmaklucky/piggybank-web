@@ -51,6 +51,8 @@ namespace PiggyBank.Model
             modelBuilder.Entity<TransferOperation>()
                 .Property(t => t.Amount)
                 .HasColumnName(nameof(TransferOperation.Amount));
+
+            modelBuilder.HasDefaultSchema("Pb");
         }
     }
 }

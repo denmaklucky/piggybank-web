@@ -10,13 +10,14 @@ using PiggyBank.Model;
 namespace PiggyBank.Model.Migrations
 {
     [DbContext(typeof(PiggyContext))]
-    [Migration("20200407144957_Initial")]
+    [Migration("20200418103147_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("Pb")
                 .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -141,6 +142,9 @@ namespace PiggyBank.Model.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Shapshot")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
