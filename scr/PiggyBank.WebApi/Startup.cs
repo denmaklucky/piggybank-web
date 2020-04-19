@@ -7,7 +7,6 @@ using Microsoft.OpenApi.Models;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Domain.Infrastructure;
 using PiggyBank.Domain.Services;
-using System.Collections.Generic;
 
 namespace PiggyBank.WebApi
 {

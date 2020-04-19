@@ -43,7 +43,7 @@ namespace PiggyBank.WebApi.Controllers
             return Ok();
         }
 
-        [HttpPatch, Route("{categoryId}/update")]
+        [HttpPatch, Route("{categoryId}/Update")]
         public async Task<IActionResult> Update(int categoryId, CategoryDto request, CancellationToken token)
         {
             var command = new UpdateCategoryCommand
@@ -59,14 +59,14 @@ namespace PiggyBank.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete, Route("{categoryId}/delete")]
+        [HttpDelete, Route("{categoryId}/Delete")]
         public async Task<IActionResult> Delete(int categoryId, CancellationToken token)
         {
             await _service.DeleteCategory(categoryId, token);
             return Ok();
         }
 
-        [HttpPatch, Route("{categoryId}/archive")]
+        [HttpPatch, Route("{categoryId}/Archive")]
         public async Task<IActionResult> Archive(int categoryId, CancellationToken token)
         {
             await _service.ArchiveCategory(categoryId, token);

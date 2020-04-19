@@ -43,7 +43,7 @@ namespace PiggyBank.WebApi.Controllers
             return Ok();
         }
 
-        [HttpPatch, Route("{accountId}/update")]
+        [HttpPatch, Route("{accountId}/Update")]
         public async Task<IActionResult> Update(int accountId, AccountDto request, CancellationToken token)
         {
             var command = new UpdateAccountCommand
@@ -64,14 +64,14 @@ namespace PiggyBank.WebApi.Controllers
         public Task<AccountDto> GetById(int accountId, CancellationToken token)
             => _service.GetAccount(accountId, token);
 
-        [HttpDelete, Route("{accountId}/delete")]
+        [HttpDelete, Route("{accountId}/Delete")]
         public async Task<IActionResult> Delete(int accountId, CancellationToken token)
         {
             await _service.DeleteAccount(accountId, token);
             return Ok();
         }
 
-        [HttpPatch, Route("{accountId}/archive")]
+        [HttpPatch, Route("{accountId}/Archive")]
         public async Task<IActionResult> Archive(int accountId, CancellationToken token)
         {
             await _service.ArchiveAccount(accountId, token);

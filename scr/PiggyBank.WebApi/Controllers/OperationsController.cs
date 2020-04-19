@@ -24,7 +24,7 @@ namespace PiggyBank.WebApi.Controllers
 
         #region Budget
 
-        [HttpPost, Route("budget")]
+        [HttpPost, Route("Budget")]
         public async Task<IActionResult> PostBudget(BudgetOperationDto request, CancellationToken token)
         {
             var command = new AddBudgetOperationCommand
@@ -42,7 +42,7 @@ namespace PiggyBank.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete, Route("budget/{operationId}/delete")]
+        [HttpDelete, Route("Budget/{operationId}/Delete")]
         public async Task<IActionResult> DelteBudgetOperation(int operationId, CancellationToken token)
         {
             await _service.DeleteBudgetOperation(operationId, token);
@@ -53,7 +53,7 @@ namespace PiggyBank.WebApi.Controllers
 
         #region Transfer
 
-        [HttpPost, Route("transfer")]
+        [HttpPost, Route("Transfer")]
         public async Task<IActionResult> PostTransfer(TransferOperationDto request, CancellationToken token)
         {
             var command = new AddTransferOperationCommand
@@ -71,7 +71,7 @@ namespace PiggyBank.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete, Route("transfer/{operationId}/delete")]
+        [HttpDelete, Route("Transfer/{operationId}/Delete")]
         public async Task<IActionResult> DelteTransferOperation(int operationId, CancellationToken token)
         {
             await _service.DeleteTransferOperation(operationId, token);
@@ -82,7 +82,7 @@ namespace PiggyBank.WebApi.Controllers
 
         #region Plan
 
-        [HttpPost, Route("plan")]
+        [HttpPost, Route("Plan")]
         public async Task<IActionResult> PostPlan(PlanOperationDto request, CancellationToken token)
         {
             var command = new AddPlanOperationCommand
@@ -101,14 +101,14 @@ namespace PiggyBank.WebApi.Controllers
             return Ok();
         }
 
-        [HttpPost, Route("plan/{operationId}/apply")]
+        [HttpPost, Route("Plan/{operationId}/Apply")]
         public async Task<IActionResult> ApplyPlanOperation(int operationId, CancellationToken token)
         {
             await _service.ApplyPlanOperation(operationId, token);
             return Ok();
         }
 
-        [HttpDelete, Route("plan/{operationId}/delete")]
+        [HttpDelete, Route("Plan/{operationId}/Delete")]
         public async Task<IActionResult> DeltePlanOperation(int operationId, CancellationToken token)
         {
             await _service.DeletePlanOperation(operationId, token);
