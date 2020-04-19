@@ -39,8 +39,9 @@ namespace PiggyBank.Domain.Handler.Operations
                 AccountId = Command.AccountId,
                 CategoryId = Command.CategoryId,
                 PlanDate = Command.PlanDate,
-                CreatedOn = DateTime.UtcNow,
-                Shapshot = JsonConvert.SerializeObject(shapshot)
+                CreatedOn = Command.CreatedOn,
+                Shapshot = JsonConvert.SerializeObject(shapshot),
+                CreatedBy = Command.CreatedBy
             };
 
             await GetRepository<PlanOperation>().AddAsync(operation, token);

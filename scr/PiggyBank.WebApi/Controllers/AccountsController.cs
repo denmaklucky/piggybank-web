@@ -4,6 +4,7 @@ using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.WebApi.Extensions;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,8 +26,6 @@ namespace PiggyBank.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(AccountDto request, CancellationToken token)
         {
-            var userId = User.GetUserId();
-
             var command = new AddAccountCommand
             {
                 Balance = request.Balance,
@@ -34,7 +33,9 @@ namespace PiggyBank.WebApi.Controllers
                 IsArchived = request.IsArchived,
                 IsDeleted = request.IsDeleted,
                 Title = request.Title,
-                Type = request.Type
+                Type = request.Type,
+                CreatedBy = User.GetUserId(),
+                CreatedOn = DateTime.UtcNow
             };
 
             await _service.AddAccount(command, token);

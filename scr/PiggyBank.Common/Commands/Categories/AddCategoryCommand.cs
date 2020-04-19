@@ -2,7 +2,7 @@
 
 namespace PiggyBank.Common.Commands.Categories
 {
-    public class AddCategoryCommand
+    public class AddCategoryCommand : BaseCreateCommand
     {
         public string Title { get; set; }
 

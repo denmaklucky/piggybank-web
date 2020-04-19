@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PiggyBank.Common.Commands.Categories;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
+using PiggyBank.WebApi.Extensions;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,7 +34,9 @@ namespace PiggyBank.WebApi.Controllers
             {
                 Title = request.Title,
                 HexColor = request.HexColor,
-                Type = request.Type
+                Type = request.Type,
+                CreatedBy = User.GetUserId(),
+                CreatedOn = DateTime.UtcNow
             };
 
             await _service.AddCategory(command, token);

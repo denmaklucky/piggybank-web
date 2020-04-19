@@ -20,7 +20,9 @@ namespace PiggyBank.Domain.Handler.Accounts
                 IsArchived = Command.IsArchived,
                 IsDeleted = Command.IsDeleted,
                 Title = Command.Title,
-                Type = Command.Type
+                Type = Command.Type,
+                CreatedBy = Command.CreatedBy,
+                CreatedOn = Command.CreatedOn
             }, token);
         }
     }

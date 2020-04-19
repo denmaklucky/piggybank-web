@@ -1,6 +1,6 @@
 ﻿namespace PiggyBank.Common.Commands.Operations
 {
-    public class AddTransferOperationCommand
+    public class AddTransferOperationCommand : BaseCreateCommand
     {
         public int From { get; set; }
 

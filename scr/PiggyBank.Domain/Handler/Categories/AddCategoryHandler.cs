@@ -17,7 +17,9 @@ namespace PiggyBank.Domain.Handler.Categories
             {
                 Title = Command.Title,
                 HexColor = Command.HexColor,
-                Type = Command.Type
+                Type = Command.Type,
+                CreatedBy = Command.CreatedBy,
+                CreatedOn = Command.CreatedOn
             }, token);
         }
     }

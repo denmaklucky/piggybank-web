@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PiggyBank.Common.Commands.Operations;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
+using PiggyBank.WebApi.Extensions;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,9 +30,11 @@ namespace PiggyBank.WebApi.Controllers
             var command = new AddBudgetOperationCommand
             {
                 AccountId = request.AccountId,
-                Amount = request.Amount ?? decimal.Zero,
+                Amount = request.Amount.GetValueOrDefault(),
                 CategoryId = request.CategoryId,
-                Comment = request.Comment
+                Comment = request.Comment,
+                CreatedOn = DateTime.UtcNow,
+                CreatedBy = User.GetUserId()
             };
 
             await _service.AddBudgetOperation(command, token);
@@ -55,10 +58,12 @@ namespace PiggyBank.WebApi.Controllers
         {
             var command = new AddTransferOperationCommand
             {
-                Amount = request.Amount ?? decimal.Zero,
+                Amount = request.Amount.GetValueOrDefault(),
                 From = request.From,
                 To = request.To,
-                Comment = request.Comment
+                Comment = request.Comment,
+                CreatedOn = DateTime.UtcNow,
+                CreatedBy = User.GetUserId()
             };
 
             await _service.AddTransferOperation(command, token);
@@ -82,11 +87,13 @@ namespace PiggyBank.WebApi.Controllers
         {
             var command = new AddPlanOperationCommand
             {
-                Amount = request.Amount ?? decimal.Zero,
+                Amount = request.Amount.GetValueOrDefault(),
                 CategoryId = request.CategoryId,
                 Comment = request.Comment,
-                PlanDate = request.PlanDate ?? DateTime.MinValue,
-                AccountId = request.AccountId
+                PlanDate = request.PlanDate.GetValueOrDefault(),
+                AccountId = request.AccountId,
+                CreatedBy = User.GetUserId(),
+                CreatedOn = DateTime.UtcNow
             };
 
             await _service.AddPlanOperation(command, token);

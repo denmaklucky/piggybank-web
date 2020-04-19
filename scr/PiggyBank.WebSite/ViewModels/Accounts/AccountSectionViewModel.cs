@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.WebSite.ViewModels.Accounts
@@ -22,7 +23,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         protected override async Task OnInitializedAsync()
         {
-            Model = await AccountService.GetAccounts();
+            Model = await AccountService.GetAccounts(CancellationToken.None);
         }
 
         public void OnCardClick(int accountId, MouseEventArgs args)

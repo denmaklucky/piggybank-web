@@ -4,6 +4,7 @@ using PiggyBank.Common.Enums;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.WebSite.ViewModels.Accounts
@@ -32,7 +33,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
                     //IsDeleted = Model.IsDeleted,
                     Title = Model.Title,
                     Type = Model.Type
-                });
+                }, CancellationToken.None);
             }
             else
             {
@@ -44,7 +45,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
                     //IsDeleted = Model.IsDeleted,
                     Title = Model.Title,
                     Type = Model.Type
-                });
+                }, CancellationToken.None);
             }
 
             await OnGoBack();

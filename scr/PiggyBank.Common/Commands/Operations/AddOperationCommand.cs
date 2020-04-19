@@ -1,8 +1,6 @@
-﻿using PiggyBank.Common.Enums;
-
-namespace PiggyBank.Common.Commands.Operations
+﻿namespace PiggyBank.Common.Commands.Operations
 {
-    public class AddBudgetOperationCommand
+    public class AddBudgetOperationCommand : BaseCreateCommand
     {
         public int CategoryId { get; set; }
 

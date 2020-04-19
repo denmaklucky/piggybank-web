@@ -37,8 +37,9 @@ namespace PiggyBank.Domain.Handler.Operations
                 Comment = Command.Comment,
                 AccountId = Command.AccountId,
                 CategoryId = Command.CategoryId,
-                CreatedOn = DateTime.UtcNow,
-                Shapshot = JsonConvert.SerializeObject(shapshot)
+                CreatedOn = Command.CreatedOn,
+                Shapshot = JsonConvert.SerializeObject(shapshot),
+                CreatedBy = Command.CreatedBy
             };
 
             account.ChangeBalance(category.Type == CategoryType.Income ? operation.Amount : -operation.Amount);

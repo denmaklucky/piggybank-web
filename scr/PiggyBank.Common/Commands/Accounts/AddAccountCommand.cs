@@ -2,7 +2,7 @@
 
 namespace PiggyBank.Common.Commands.Accounts
 {
-    public class AddAccountCommand
+    public class AddAccountCommand : BaseCreateCommand
     {
         public string Title { get; set; }
 

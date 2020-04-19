@@ -30,8 +30,9 @@ namespace PiggyBank.Domain.Handler.Operations
                 Type = OperationType.Transfer,
                 From = Command.From,
                 To = Command.To,
-                CreatedOn = DateTime.UtcNow,
-                Comment = Command.Comment
+                CreatedOn = Command.CreatedOn,
+                Comment = Command.Comment,
+                CreatedBy = Command.CreatedBy
             };
 
             fromAccount.ChangeBalance(-Command.Amount);
