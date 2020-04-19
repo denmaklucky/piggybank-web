@@ -2,6 +2,7 @@
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.Model;
 using PiggyBank.Model.Models.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,12 +10,14 @@ namespace PiggyBank.Domain.Queries.Operations
 {
     public class GetOperationsQuery : BaseQuery<OperationDto[]>
     {
-        public GetOperationsQuery(PiggyContext context)
-            : base(context) { }
+        private readonly Guid _userId;
+        public GetOperationsQuery(PiggyContext context, Guid userId)
+            : base(context)
+            => _userId = userId;
 
         public override Task<OperationDto[]> Invoke()
         {
-            var budgetQuery = GetRepository<BudgetOperation>().Where(b => !b.IsDeleted)
+            var budgetQuery = GetRepository<BudgetOperation>().Where(b => b.CreatedBy == _userId && !b.IsDeleted)
                 .Select(b => new OperationDto
                 {
                     Id = b.Id,
@@ -31,7 +34,7 @@ namespace PiggyBank.Domain.Queries.Operations
                     ToTitle = null,
                 });
 
-            var transferQuery = GetRepository<TransferOperation>().Where(t => !t.IsDeleted)
+            var transferQuery = GetRepository<TransferOperation>().Where(t => t.CreatedBy == _userId && !t.IsDeleted)
                 .Select(t => new OperationDto
                 {
                     Id = t.Id,
@@ -48,7 +51,7 @@ namespace PiggyBank.Domain.Queries.Operations
                     ToTitle = GetRepository<Account>().First(a => a.Id == t.To).Title
                 });
 
-            var planQuery = GetRepository<PlanOperation>().Where(p => !p.IsDeleted)
+            var planQuery = GetRepository<PlanOperation>().Where(p => p.CreatedBy == _userId && !p.IsDeleted)
                 .Select(p => new OperationDto
                 {
                     Id = p.Id,

@@ -21,7 +21,7 @@ namespace PiggyBank.WebApi.Controllers
 
         [HttpGet]
         public Task<CategoryDto[]> Get(CancellationToken token)
-            => _service.GetCategories(token);
+            => _service.GetCategories(User.GetUserId(), token);
 
         [HttpGet, Route("{categoryId}")]
         public Task<CategoryDto> GetById(int categoryId, CancellationToken token)

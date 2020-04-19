@@ -2,6 +2,7 @@
 using PiggyBank.Common.Enums;
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.Common.Models.Generic;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Get accounts
         /// </summary>
-        Task<AccountInfoDto[]> GetAccounts(CancellationToken token);
+        Task<AccountInfoDto[]> GetAccounts(Guid userId, CancellationToken token);
 
         /// <summary>
         /// Get accounts group by type

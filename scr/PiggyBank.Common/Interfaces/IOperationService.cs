@@ -1,5 +1,6 @@
 ﻿using PiggyBank.Common.Commands.Operations;
 using PiggyBank.Common.Models.Dto;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Get operations
         /// </summary>
-        Task<OperationDto[]> GetOperations(CancellationToken token);
+        Task<OperationDto[]> GetOperations(Guid userId, CancellationToken token);
 
         /// <summary>
         /// Get operation by id

@@ -21,7 +21,7 @@ namespace PiggyBank.WebApi.Controllers
 
         [HttpGet]
         public Task<AccountInfoDto[]> Get(CancellationToken token)
-            => _service.GetAccounts(token);
+            => _service.GetAccounts(User.GetUserId(), token);
 
         [HttpPost]
         public async Task<IActionResult> Post(AccountDto request, CancellationToken token)

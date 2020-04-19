@@ -20,7 +20,7 @@ namespace PiggyBank.WebApi.Controllers
 
         [HttpGet]
         public Task<OperationDto[]> Get(CancellationToken token)
-            => _service.GetOperations(token);
+            => _service.GetOperations(User.GetUserId(), token);
 
         #region Budget
 

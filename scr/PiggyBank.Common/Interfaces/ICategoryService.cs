@@ -1,5 +1,6 @@
 ﻿using PiggyBank.Common.Commands.Categories;
 using PiggyBank.Common.Models.Dto;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace PiggyBank.Common.Interfaces
         /// <summary>
         /// Get categories
         /// </summary>
-        Task<CategoryDto[]> GetCategories(CancellationToken token);
+        Task<CategoryDto[]> GetCategories(Guid userId, CancellationToken token);
 
         /// <summary>
         /// Get category by id

@@ -3,6 +3,7 @@ using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
 using PiggyBank.Domain.Handler.Categories;
 using PiggyBank.Domain.Queries.Categories;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,8 +20,8 @@ namespace PiggyBank.Domain.Services
         public Task DeleteCategory(int id, CancellationToken token)
             => _handlerDispatcher.Invoke<DeleteCategoryHandler, int>(id, token);
 
-        public Task<CategoryDto[]> GetCategories(CancellationToken token)
-            => _queryDispatcher.Invoke<GetCategoriesQuery, CategoryDto[]>();
+        public Task<CategoryDto[]> GetCategories(Guid userId, CancellationToken token)
+            => _queryDispatcher.Invoke<GetCategoriesQuery, CategoryDto[]>(userId);
 
         public Task<CategoryDto> GetCategory(int id, CancellationToken token)
             => _queryDispatcher.Invoke<GetCategoryByIdQuery, CategoryDto>(id);

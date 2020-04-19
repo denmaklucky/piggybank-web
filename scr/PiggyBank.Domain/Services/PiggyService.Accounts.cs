@@ -5,6 +5,7 @@ using PiggyBank.Common.Models.Dto;
 using PiggyBank.Common.Models.Generic;
 using PiggyBank.Domain.Handler.Accounts;
 using PiggyBank.Domain.Queries.Accounts;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,8 +25,8 @@ namespace PiggyBank.Domain.Services
         public Task<AccountDto> GetAccount(int accountId, CancellationToken token)
             => _queryDispatcher.Invoke<GetAccountByIdQuery, AccountDto>(accountId);
 
-        public Task<AccountInfoDto[]> GetAccounts(CancellationToken token)
-            => _queryDispatcher.Invoke<GetAccountsQuery, AccountInfoDto[]>();
+        public Task<AccountInfoDto[]> GetAccounts(Guid userId, CancellationToken token)
+            => _queryDispatcher.Invoke<GetAccountsQuery, AccountInfoDto[]>(userId);
 
         public Task<GenericGroup<AccountType, AccountInfoDto>[]> GetAccountsGroupByType(CancellationToken token)
             => _queryDispatcher.Invoke<GetAccountsGroupByTypeQuery, GenericGroup<AccountType, AccountInfoDto>[]>();
