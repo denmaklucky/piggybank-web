@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
+using PiggyBank.WebApi.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,6 +25,8 @@ namespace PiggyBank.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(AccountDto request, CancellationToken token)
         {
+            var userId = User.GetUserId();
+
             var command = new AddAccountCommand
             {
                 Balance = request.Balance,

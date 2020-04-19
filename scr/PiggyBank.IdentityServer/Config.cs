@@ -29,7 +29,8 @@ namespace PiggyBank.IdentityServer
 
                     // scopes that client has access to
                     AllowedScopes = { "api1" },
-                    IdentityTokenLifetime = 3600*8
+                    IdentityTokenLifetime = 3600*8,
+                    AccessTokenLifetime = 3600*8
                 }
             };
     }
