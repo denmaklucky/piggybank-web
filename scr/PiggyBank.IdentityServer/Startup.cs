@@ -1,3 +1,4 @@
+using IdentityServer4.AspNetIdentity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -16,14 +17,15 @@ namespace PiggyBank.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var builder = services.AddIdentityServer()
-                .AddInMemoryApiResources(Config.Apis)
-                .AddInMemoryClients(Config.Clients);
-
-            builder.AddDeveloperSigningCredential();
+            services.AddIdentityServer()
+               .AddInMemoryApiResources(Config.Apis)
+               .AddInMemoryClients(Config.Clients)
+               .AddDeveloperSigningCredential()
+               .AddResourceOwnerValidator<ResourceOwnerPasswordValidator<IdentityUser>>();
 
             //UserManager
-            services.AddDbContext<IndeintityContext>(opt => opt.UseSqlServer("Server=(local)\\SQL2016;Database=PiggyBank;Trusted_Connection=True;MultipleActiveResultSets=true"));
+            services.AddDbContext<IndeintityContext>(opt =>
+                    opt.UseSqlServer("Server=(local)\\SQL2016;Database=PiggyBank;Trusted_Connection=True;MultipleActiveResultSets=true"));
             services.AddIdentity<IdentityUser, IdentityRole>(opt =>
             {
                 opt.Password.RequireDigit = false;
