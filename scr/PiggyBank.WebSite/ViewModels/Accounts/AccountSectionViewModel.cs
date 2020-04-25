@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
+using PiggyBank.WebSite.Interfaces;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
             => Class = DefaultClass;
 
         [Inject]
-        public IAccountService AccountService { get; set; }
+        public IAccountModel AccountModel { get; set; }
 
         public string AccountViewClass { get; set; } = "d-none";
 
@@ -23,7 +24,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         protected override async Task OnInitializedAsync()
         {
-            Model = await AccountService.GetAccounts(CancellationToken.None);
+            Model = await AccountModel.GetAccounts();
         }
 
         public void OnCardClick(int accountId, MouseEventArgs args)

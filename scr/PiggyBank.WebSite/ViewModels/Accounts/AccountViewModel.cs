@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PiggyBank.Common.Commands.Accounts;
 using PiggyBank.Common.Enums;
-using PiggyBank.Common.Interfaces;
 using PiggyBank.Common.Models.Dto;
+using PiggyBank.WebSite.Interfaces;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace PiggyBank.WebSite.ViewModels.Accounts
@@ -12,7 +10,7 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
     public class AccountViewModel : ComponentBase
     {
         [Inject]
-        public IAccountService AccountService { get; set; }
+        public IAccountModel AccountModel { get; set; }
 
         [Parameter]
         public EventCallback<EventArgs> GoBack { get; set; }
@@ -24,28 +22,11 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
         {
             if (Model.Id != default)
             {
-                await AccountService.UpdateAccount(new UpdateAccountCommand
-                {
-                    Balance = Model.Balance,
-                    Currency = Model.Currency,
-                    Id = Model.Id,
-                    //IsArchived = Model.IsArchived,
-                    //IsDeleted = Model.IsDeleted,
-                    Title = Model.Title,
-                    Type = Model.Type
-                }, CancellationToken.None);
+                await AccountModel.UpdateAccount(new AccountDto());
             }
             else
             {
-                await AccountService.AddAccount(new AddAccountCommand
-                {
-                    Balance = Model.Balance,
-                    Currency = Model.Currency,
-                    //IsArchived = Model.IsArchived,
-                    //IsDeleted = Model.IsDeleted,
-                    Title = Model.Title,
-                    Type = Model.Type
-                }, CancellationToken.None);
+                await AccountModel.AddAccount(new AccountDto());
             }
 
             await OnGoBack();

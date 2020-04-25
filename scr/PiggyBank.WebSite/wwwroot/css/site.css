@@ -165,3 +165,14 @@ app {
 .b-bottom {
     border-bottom: 1px solid #e8e8e8;
 }
+
+.sidepanel{
+    width:15%;
+    height:100%;
+    float:left;
+}
+
+.maincontent{
+    width:85%;
+    float:left;
+}

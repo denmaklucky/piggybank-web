@@ -3,15 +3,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PiggyBank.WebSite.Interfaces;
+using PiggyBank.WebSite.Models;
 
 namespace PiggyBank.WebSite
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+            => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -20,6 +20,7 @@ namespace PiggyBank.WebSite
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddHttpClient();
+            services.AddTransient<IAccountModel, AccountModel>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,6 +38,7 @@ namespace PiggyBank.WebSite
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBlazorHub();
