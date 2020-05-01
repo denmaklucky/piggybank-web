@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PiggyBank.WebSite.ViewModels.Accounts
 {
-    public class AccountViewModel : ComponentBase
+    public class EditAccountViewModel : ComponentBase
     {
         [Inject]
         public IAccountModel AccountModel { get; set; }

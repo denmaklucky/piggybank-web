@@ -1,4 +1,5 @@
-﻿using PiggyBank.Common.Models.Dto;
+﻿using PiggyBank.Common.Enums;
+using PiggyBank.Common.Models.Dto;
 using PiggyBank.WebSite.Interfaces;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -17,9 +18,36 @@ namespace PiggyBank.WebSite.Models
             throw new System.NotImplementedException();
         }
 
-        public Task<AccountInfoDto[]> GetAccounts()
+        public async Task<AccountInfoDto[]> GetAccounts()
         {
-            throw new System.NotImplementedException();
+            await Task.Delay(2000);
+            return new[] 
+            {
+                new AccountInfoDto
+                {
+                    Id = 1,
+                    Balance = 100,
+                    Currency = "RUB",
+                    Title = "Rocket",
+                    Type = AccountType.Card
+                }, 
+                new AccountInfoDto
+                {
+                    Id = 2,
+                    Balance = 200,
+                    Currency = "RUB",
+                    Title = "Tinkoff",
+                    Type = AccountType.Card
+                },
+                new AccountInfoDto
+                {
+                    Id = 3,
+                    Balance = 400,
+                    Currency = "RUB",
+                    Title = "Home money",
+                    Type = AccountType.Cash
+                }
+            };
         }
 
         public Task UpdateAccount(AccountDto account)

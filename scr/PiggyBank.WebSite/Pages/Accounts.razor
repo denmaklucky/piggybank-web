@@ -1,37 +1,28 @@
 ﻿@page "/accounts"
-@inherits AccountSectionViewModel
+@inherits AccountsViewModel
 
-<div class="row">
-    <div class="@Class" style="width:100%">
-        <div class="text-right">
-            <button class="btn btn-success" @onclick="OnAddNewAccount">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" class="css-1sylyko ewy7k8y10">
-                    <path fill="#ffffff" fill-rule="evenodd" d="M9 9V5.002a.999.999 0 1 1 2 0V9h3.998a.999.999 0 1 1 0 2H11v3.998a.999.999 0 1 1-2 0V11H5.002a.999.999 0 1 1 0-2H9z"></path>
-                </svg> New account
-            </button>
-        </div>
-
-        <br />
-
-        @if (Model == null)
+<div class="margin_top_10">
+    <div>
+        <div class="f_left">Total balance</div>
+        <div class="f_right">@(Accounts?.Sum(a => a.Balance))</div>
+    </div>
+    <br />
+    <div>
+        <hr size="1" color="#e5e5e5" />
+    </div>
+    <div class="margin_top_5">
+        @if (Accounts == null)
         {
-            <span>You're haven't any accounts. Please create it!</span>
+        <div class="text_center">
+            <span>Loading accounts..</span>
+        </div>
         }
         else
         {
-            @foreach (var group in Model.GroupBy(a => a.Type).Select(g => new { g.Key, g }))
+            @foreach (var account in Accounts)
             {
-                <h5>@group.Key</h5>
-                foreach (var item in group.g)
-                {
-                    <AccountComponent Account="item" OnCardClick="@((args)=>OnCardClick(item.Id, args))" />
-                }
-
-                <br/>
+                <AccountComponent Account="account" />
             }
         }
-    </div>
-    <div class="@AccountViewClass">
-        <Account Model="@SelectedItem" GoBack="OnCloseAccountView"/>
     </div>
 </div>

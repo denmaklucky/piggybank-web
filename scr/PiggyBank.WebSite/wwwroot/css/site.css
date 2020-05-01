@@ -46,12 +46,20 @@ html, body {
     float: left;
 }
 
+.f_right {
+    float: right;
+}
+
 .margin_right_10 {
     margin: 0px 10px 0px 0px;
 }
 
 .margin_top_5 {
     margin-top: 5px;
+}
+
+.margin_top_10 {
+    margin-top: 10px;
 }
 
 .sidepanel_header:hover {
@@ -73,4 +81,27 @@ html, body {
 
 .d_inline {
     display: inline;
+}
+
+.card {
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    height: 40px;
+}
+
+.pointer {
+    cursor: pointer;
+    height:40px;
+}
+
+.padding_10 {
+    padding: 10px;
+}
+
+.pointer:hover {
+    background-color: #F3EDED;
+}
+
+.text_center{
+    text-align:center;
 }
