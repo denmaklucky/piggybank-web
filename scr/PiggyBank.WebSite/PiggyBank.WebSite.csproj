@@ -10,8 +10,4 @@
     <ProjectReference Include="..\PiggyBank.Domain\PiggyBank.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
-
 </Project>

@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PiggyBank.Common", "PiggyBa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PiggyBank.Test", "PiggyBank.Test\PiggyBank.Test.csproj", "{1A606064-649F-4E0A-B212-696DAA7B9952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiggyBank.IdentityServer", "PiggyBank.IdentityServer\PiggyBank.IdentityServer.csproj", "{88E72E1C-5EF1-4965-B9ED-6464F04AF86B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PiggyBank.IdentityServer", "PiggyBank.IdentityServer\PiggyBank.IdentityServer.csproj", "{88E72E1C-5EF1-4965-B9ED-6464F04AF86B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
