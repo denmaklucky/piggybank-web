@@ -9,23 +9,19 @@
             </div>
         </a>
     </div>
-    <ul>
-        <li class="non_li">
-            <NavLink href="operations">
-                <span class="oi oi-layers" aria-hidden="true"></span>Operations
-            </NavLink>
-        </li>
-        <li class="non_li">
-            <NavLink href="accounts">
-                <span class="oi oi-layers" aria-hidden="true"></span>Accounts
-            </NavLink>
-        </li>
-        <li class="non_li">
-            <NavLink href="categories">
-                <span class="oi oi-layers" aria-hidden="true"></span>Categories
-            </NavLink>
-        </li>
-    </ul>
+    <div class="sidepnale_menu">
+        <ul class="d_inline">
+            <li class="non_li">
+                <NavigationLink Href="operations" LinkText="Operations" ImgClass="oi oi-document"/>
+            </li>
+            <li class="non_li">
+                <NavigationLink Href="accounts" LinkText="Accounts" ImgClass="oi oi-layers"/>
+            </li>
+            <li class="non_li">
+                <NavigationLink Href="categories" LinkText="Categories" ImgClass="oi oi-tags"/>
+            </li>
+        </ul>
+    </div>
 </div>
 
 @code {

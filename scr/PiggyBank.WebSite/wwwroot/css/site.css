@@ -57,3 +57,20 @@ html, body {
 .sidepanel_header:hover {
     background-color: #F3EDED;
 }
+
+.nav_link {
+    padding: 10px;
+    color: #908E8E;
+}
+
+    .nav_link:hover {
+        background-color: #F3EDED;
+    }
+
+.sidepnale_menu {
+    text-align: justify;
+}
+
+.d_inline {
+    display: inline;
+}

@@ -1,6 +1,11 @@
-﻿<a href="@Href">
-
-</a>
+﻿<div class="nav_link">
+    <a href="@Href" class="non_link">
+        <div>
+            <span class="@ImgClass margin_right_10"></span>
+            <span>@LinkText</span>
+        </div>
+    </a>
+</div>
 
 @code {
 
@@ -9,4 +14,7 @@
 
     [Parameter]
     public string LinkText { get; set; }
+
+    [Parameter]
+    public string ImgClass { get; set; }
 }
