@@ -1,29 +1,26 @@
-﻿<div class="nav_link">
-    <a href="@Href" class="non_link">
+﻿<div class="nav_link @(Model.IsSelected ? "nav_link_selected" : "")" @onclick="@(() => OnClicked.InvokeAsync(Model))">
+    <a href="@Model.Href" class="non_link">
         <div>
-            <span class="@ImgClass margin_right_10"></span>
-            <span>@LinkText</span>
+            <span class="@Model.ImgClass margin_right_10"></span>
+            <span>@Model.LinkText</span>
         </div>
     </a>
-    <div>
-        <ul class="d_inline">
-            <li class="non_li">
-                <div>
-                    <a href="" class="non_link">Add new item</a>
-                </div>
-            </li>
-        </ul>
-    </div>
+    @*<div>
+            <ul class="d_inline">
+                <li class="non_li">
+                    <div>
+                        <a href="" class="non_link">Add new item</a>
+                    </div>
+                </li>
+            </ul>
+        </div>*@
 </div>
 
 @code {
 
     [Parameter]
-    public string Href { get; set; }
+    public NavigationLinkModel Model { get; set; }
 
     [Parameter]
-    public string LinkText { get; set; }
-
-    [Parameter]
-    public string ImgClass { get; set; }
+    public EventCallback<NavigationLinkModel> OnClicked { get; set; }
 }

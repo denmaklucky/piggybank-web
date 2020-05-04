@@ -75,6 +75,10 @@ html, body {
         background-color: #F3EDED;
     }
 
+.nav_link_selected {
+    background-color: #F3EDED;
+}
+
 .sidepnale_menu {
     text-align: justify;
 }
@@ -91,7 +95,7 @@ html, body {
 
 .pointer {
     cursor: pointer;
-    height:40px;
+    height: 40px;
 }
 
 .padding_10 {
@@ -102,6 +106,6 @@ html, body {
     background-color: #F3EDED;
 }
 
-.text_center{
-    text-align:center;
+.text_center {
+    text-align: center;
 }

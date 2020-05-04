@@ -11,19 +11,52 @@
     </div>
     <div class="sidepnale_menu">
         <ul class="d_inline">
-            <li class="non_li">
-                <NavigationLink Href="operations" LinkText="Operations" ImgClass="oi oi-document"/>
-            </li>
-            <li class="non_li">
-                <NavigationLink Href="accounts" LinkText="Accounts" ImgClass="oi oi-layers"/>
-            </li>
-            <li class="non_li">
-                <NavigationLink Href="categories" LinkText="Categories" ImgClass="oi oi-tags"/>
-            </li>
+            @foreach (var link in _link)
+            {
+                <li class="non_li">
+                    <NavigationLink Model="link" OnClicked="OnChangedSelectedItem" />
+                </li>
+            }
         </ul>
     </div>
 </div>
 
 @code {
 
+    public readonly List<NavigationLinkModel> _link = new List<NavigationLinkModel>
+    {
+        new NavigationLinkModel
+        {
+            Href = "operations",
+            ImgClass = "oi oi-document",
+            LinkText = "Operations"
+        },
+        new NavigationLinkModel
+        {
+            Href = "accounts",
+            ImgClass = "oi oi-layers",
+            LinkText = "Accounts"
+        },
+         new NavigationLinkModel
+        {
+            Href = "categories",
+            ImgClass = "oi oi-tags",
+            LinkText = "Categories"
+        },
+    };
+
+    public void OnChangedSelectedItem(NavigationLinkModel selectedLink)
+    {
+        if (selectedLink.IsSelected)
+        {
+            return;
+        }
+
+        foreach (var item in _link)
+        {
+            item.IsSelected = false;
+        }
+
+        selectedLink.IsSelected = true;
+    }
 }
