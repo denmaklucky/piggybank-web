@@ -73,10 +73,15 @@ html, body {
 
     .nav_link:hover {
         background-color: #F3EDED;
+        box-shadow: inset 4px 0 0 #b65da0;
     }
 
-.nav_link_selected {
-    background-color: #F3EDED;
+.nav_link_div {
+}
+
+.nav_link_active {
+    background-color: #f0f0f0;
+    box-shadow: inset 4px 0 0 #b65da0;
 }
 
 .sidepnale_menu {
@@ -108,4 +113,17 @@ html, body {
 
 .text_center {
     text-align: center;
+}
+
+
+.padding_left_0 {
+    padding-left: 0;
+}
+
+.font_size_12 {
+    font-size: 12px;
+}
+
+.padding_left_20 {
+    padding-left: 20px;
 }

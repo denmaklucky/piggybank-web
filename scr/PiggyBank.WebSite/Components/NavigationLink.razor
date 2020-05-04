@@ -1,19 +1,23 @@
-﻿<div class="nav_link @(Model.IsSelected ? "nav_link_selected" : "")" @onclick="@(() => OnClicked.InvokeAsync(Model))">
-    <a href="@Model.Href" class="non_link">
-        <div>
+﻿<div class="@(Model.IsSelected ? "nav_link_active" : "")">
+    <a href="@Model.Href" class="non_link" @onclick="@(() => OnClicked.InvokeAsync(Model))">
+        <div class="nav_link @(Model.IsChild ? "padding_left_20" : "")">
             <span class="@Model.ImgClass margin_right_10"></span>
             <span>@Model.LinkText</span>
         </div>
     </a>
-    @*<div>
-            <ul class="d_inline">
-                <li class="non_li">
-                    <div>
-                        <a href="" class="non_link">Add new item</a>
-                    </div>
-                </li>
+    @if (Model.SubnavigationLinks != null && Model.IsSelected)
+    {
+        <div class="font_size_12">
+            <ul class="padding_left_0">
+                @foreach (var item in Model.SubnavigationLinks)
+                {
+                    <li class="non_li">
+                        <NavigationLink Model="item" />
+                    </li>
+                }
             </ul>
-        </div>*@
+        </div>
+    }
 </div>
 
 @code {

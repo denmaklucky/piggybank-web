@@ -10,8 +10,8 @@
         </a>
     </div>
     <div class="sidepnale_menu">
-        <ul class="d_inline">
-            @foreach (var link in _link)
+        <ul class="padding_left_0">
+            @foreach (var link in _links)
             {
                 <li class="non_li">
                     <NavigationLink Model="link" OnClicked="OnChangedSelectedItem" />
@@ -23,7 +23,7 @@
 
 @code {
 
-    public readonly List<NavigationLinkModel> _link = new List<NavigationLinkModel>
+    public readonly List<NavigationLinkModel> _links = new List<NavigationLinkModel>
     {
         new NavigationLinkModel
         {
@@ -35,7 +35,17 @@
         {
             Href = "accounts",
             ImgClass = "oi oi-layers",
-            LinkText = "Accounts"
+            LinkText = "Accounts",
+            SubnavigationLinks = new List<NavigationLinkModel>
+            {
+                new NavigationLinkModel
+                {
+                    Href = "accounts",
+                    ImgClass = "oi oi-plus",
+                    LinkText = "Add new account",
+                    IsChild = true
+                }
+            }
         },
          new NavigationLinkModel
         {
@@ -52,10 +62,7 @@
             return;
         }
 
-        foreach (var item in _link)
-        {
-            item.IsSelected = false;
-        }
+        _links.ForEach(l => l.IsSelected = false);
 
         selectedLink.IsSelected = true;
     }
