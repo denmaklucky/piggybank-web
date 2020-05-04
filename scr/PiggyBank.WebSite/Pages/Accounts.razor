@@ -13,9 +13,9 @@
     <div class="margin_top_5">
         @if (Accounts == null)
         {
-        <div class="text_center">
-            <span>Loading accounts..</span>
-        </div>
+            <div class="text_center">
+                <span>Loading accounts..</span>
+            </div>
         }
         else
         {
@@ -26,3 +26,36 @@
         }
     </div>
 </div>
+
+<button @onclick="OnShow">Click</button>
+
+<div class="modal" role="dialog" style="@style">
+    <div>
+        Hello, world!
+    </div>
+    <div>
+        <button @onclick="OnHidden">Close</button>
+    </div>
+</div>
+
+<div class="@Class">
+
+</div>
+
+@code{
+
+    private string style = "display:none;";
+    private string Class = "";
+
+    public void OnShow()
+    {
+        Class = "modal_background";
+        style = "display:block;";
+    }
+
+    public void OnHidden()
+    {
+        Class = "";
+        style = "display:none;";
+    }
+}
