@@ -27,50 +27,14 @@
     </div>
 </div>
 
-<div class="modal" role="dialog" style="@style">
-    <div class="modal_header">
-        <button class="close f_right" @onclick="OnHidden">×</button>
-        <h1 class="font_size_16">Edit Account</h1>
-    </div>
-    <div class="modal_body">
-        <div>
-            <div class="m_bottom_5">
-                <label class="label">NAME</label>
-            </div>
-            <div class="w_calc_20">
-                <input class="textbox" value="@Title"/>
-            </div>
-            <div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal_footer">
-        <button class="success" @onclick="OnHidden">Save</button>
-    </div>
-</div>
-
-<div class="@Class">
-
-</div>
+<EditAccountModal Account="SelectedAccount" />
 
 @code{
 
-    private string style = "display:none;";
-    private string Class = "";
-
-    private string Title;
+    public AccountInfoDto SelectedAccount { get; set; }
 
     public void OnShow(AccountInfoDto selectedAccount)
     {
-        Class = "modal_background";
-        style = "display:block;";
-        Title = selectedAccount.Title;
-    }
-
-    public void OnHidden()
-    {
-        Class = "";
-        style = "display:none;";
+        SelectedAccount = selectedAccount;
     }
 }
