@@ -205,3 +205,7 @@ html, body {
     border: 1px solid #C9C9C9;
     height: 26px;
 }
+
+    .textbox:focus {
+        border-color: #1C32F2;
+    }
