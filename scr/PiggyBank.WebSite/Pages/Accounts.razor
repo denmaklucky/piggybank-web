@@ -37,8 +37,8 @@
             <div class="m_bottom_5">
                 <label class="label">NAME</label>
             </div>
-            <div>
-                <input />
+            <div class="w_calc_20">
+                <input class="textbox" value="@Title"/>
             </div>
         </div>
     </div>
@@ -56,10 +56,13 @@
     private string style = "display:none;";
     private string Class = "";
 
-    public void OnShow()
+    private string Title;
+
+    public void OnShow(AccountInfoDto selectedAccount)
     {
         Class = "modal_background";
         style = "display:block;";
+        Title = selectedAccount.Title;
     }
 
     public void OnHidden()

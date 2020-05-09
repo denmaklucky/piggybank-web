@@ -1,5 +1,5 @@
 ﻿<div class="card">
-    <div class="pointer" @onclick="OnCardClick">
+    <div class="pointer" @onclick="@(() => OnCardClick.InvokeAsync(Account))">
         <div class="f_left padding_10">@Account.Title</div>
         <div class="f_right padding_10">@($"{Account.Balance} {Account.Currency}")</div>
     </div>
@@ -10,5 +10,5 @@
     public AccountInfoDto Account { get; set; }
 
     [Parameter]
-    public EventCallback<MouseEventArgs> OnCardClick { get; set; }
+    public EventCallback<AccountInfoDto> OnCardClick { get; set; }
 }

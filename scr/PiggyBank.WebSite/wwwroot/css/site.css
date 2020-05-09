@@ -193,3 +193,15 @@ html, body {
     color: gray;
     font-size: 11px;
 }
+
+.w_calc_20 {
+    width: calc(100% - 20px);
+}
+
+.textbox {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #C9C9C9;
+    height: 26px;
+}
