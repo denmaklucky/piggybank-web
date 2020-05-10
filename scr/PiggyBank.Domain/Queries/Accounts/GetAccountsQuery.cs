@@ -22,6 +22,7 @@ namespace PiggyBank.Domain.Queries.Accounts
                 Balance = a.Balance,
                 Currency = a.Currency,
                 Title = a.Title,
+                IsArchived = a.IsArchived
             }).ToArrayAsync();
     }
 }

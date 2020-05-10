@@ -11,9 +11,6 @@ namespace PiggyBank.Common.Enums
         Cash,
 
         [Description("Card")]
-        Card,
-
-        [Description("Bank account")]
-        BankAccount
+        Card
     }
 }

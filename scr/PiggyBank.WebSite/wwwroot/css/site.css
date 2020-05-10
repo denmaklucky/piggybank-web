@@ -221,3 +221,7 @@ html, body {
     .combobox:focus {
         border-color: #1C32F2;
     }
+
+.foreground_gray {
+    color: gray;
+}

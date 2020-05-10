@@ -21,7 +21,7 @@ namespace PiggyBank.WebSite.Models
         public async Task<AccountInfoDto[]> GetAccounts()
         {
             await Task.Delay(2000);
-            return new[] 
+            return new[]
             {
                 new AccountInfoDto
                 {
@@ -30,7 +30,7 @@ namespace PiggyBank.WebSite.Models
                     Currency = "RUB",
                     Title = "Rocket",
                     Type = AccountType.Card
-                }, 
+                },
                 new AccountInfoDto
                 {
                     Id = 2,
@@ -46,6 +46,15 @@ namespace PiggyBank.WebSite.Models
                     Currency = "RUB",
                     Title = "Home money",
                     Type = AccountType.Cash
+                },
+                new AccountInfoDto
+                {
+                    Id = 3,
+                    Balance = 400,
+                    Currency = "RUB",
+                    Title = "Russian Standart",
+                    Type = AccountType.Card,
+                    IsArchived = true
                 }
             };
         }
