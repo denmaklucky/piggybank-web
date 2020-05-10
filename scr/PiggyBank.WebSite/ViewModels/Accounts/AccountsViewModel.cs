@@ -16,16 +16,17 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         public IList<AccountInfoDto> Accounts { get; set; }
 
-        protected override async Task OnInitializedAsync()
-        {
-            Accounts = await AccountModel.GetAccounts();
-        }
-
         public AccountInfoDto SelectedAccount { get; set; }
 
         public bool ShowEditModal { get; set; } = false;
 
         public string ArchivedAccountsStyle { get; set; } = DisplayNone;
+
+        protected override async Task OnInitializedAsync()
+        {
+            Accounts = await AccountModel.GetAccounts();
+            AccountModel.PropertyChanged += (o, e) => StateHasChanged();
+        }
 
         public void OnShow(AccountInfoDto selectedAccount)
         {
@@ -38,9 +39,10 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
                                      ? DisplayBlock
                                      : DisplayNone;
 
-        public void OnSaved(AccountInfoDto savedAccount)
+        public Task OnSaved(AccountInfoDto savedAccount)
         {
             ShowEditModal = false;
+            return AccountModel.UpdateAccount(savedAccount);
         }
 
         public void OnHided()

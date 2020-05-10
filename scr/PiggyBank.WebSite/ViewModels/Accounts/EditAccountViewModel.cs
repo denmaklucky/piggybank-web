@@ -20,14 +20,14 @@ namespace PiggyBank.WebSite.ViewModels.Accounts
 
         public async Task OnSave()
         {
-            if (Model.Id != default)
-            {
-                await AccountModel.UpdateAccount(new AccountDto());
-            }
-            else
-            {
-                await AccountModel.AddAccount(new AccountDto());
-            }
+            //if (Model.Id != default)
+            //{
+            //    await AccountModel.UpdateAccount(new AccountDto());
+            //}
+            //else
+            //{
+            //    await AccountModel.AddAccount(new AccountDto());
+            //}
 
             await OnGoBack();
         }

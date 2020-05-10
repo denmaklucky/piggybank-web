@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 
 namespace PiggyBank.WebSite.Interfaces
 {
-    public interface IAccountModel
+    public interface IAccountModel : IPropertyChanged
     {
         Task<AccountInfoDto[]> GetAccounts();
 
-        Task AddAccount(AccountDto account);
+        Task AddAccount(AccountInfoDto account);
 
-        Task UpdateAccount(AccountDto account);
+        Task UpdateAccount(AccountInfoDto account);
     }
 }
