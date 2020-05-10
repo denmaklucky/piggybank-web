@@ -225,3 +225,11 @@ html, body {
 .foreground_gray {
     color: gray;
 }
+
+
+.link_button {
+    color: #1C32F2;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
