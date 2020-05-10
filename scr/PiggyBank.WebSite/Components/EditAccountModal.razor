@@ -1,6 +1,6 @@
 ﻿@using PiggyBank.Common.Enums
 
-@if (Account != null)
+@if (Show)
 {
     <div class="modal" role="dialog" style="@ModalStyle">
         <div class="modal_header">
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="modal_footer">
-            <button class="success" @onclick="OnHidden">Save</button>
+            <button class="success" @onclick="OnSave">Save</button>
         </div>
     </div>
 
@@ -72,9 +72,40 @@
     [Parameter]
     public AccountInfoDto Account { get; set; }
 
-    public void OnHidden()
+    [Parameter]
+    public EventCallback<AccountInfoDto> Saved { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> Hided { get; set; }
+
+    private bool _show;
+
+    [Parameter]
+    public bool Show
     {
-        Class = "";
-        ModalStyle = DisplayNone;
+        get => _show;
+        set
+        {
+            if (_show == value)
+                return;
+
+            _show = value;
+            if (_show)
+            {
+                Class = BackgroundClass;
+                ModalStyle = DisplayBlock;
+            }
+            else
+            {
+                Class = "";
+                ModalStyle = DisplayNone;
+            }
+        }
     }
+
+    public void OnHidden(MouseEventArgs args)
+        => Hided.InvokeAsync(args);
+
+    public Task OnSave()
+        => Saved.InvokeAsync(Account);
 }

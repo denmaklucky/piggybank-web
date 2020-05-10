@@ -38,23 +38,4 @@
     </div>
 </div>
 
-<EditAccountModal Account="SelectedAccount" />
-
-@code{
-    private const string DisplayNone = "display:none;";
-    private const string DisplayBlock = "display:block;";
-
-    public AccountInfoDto SelectedAccount { get; set; }
-
-    public string ArchivedAccountsStyle { get; set; } = DisplayNone;
-
-    public void OnShow(AccountInfoDto selectedAccount)
-    {
-        SelectedAccount = selectedAccount;
-    }
-
-    public void ShowArchived(bool show)
-        => ArchivedAccountsStyle = show
-                                 ? DisplayBlock
-                                 : DisplayNone;
-}
+<EditAccountModal Account="SelectedAccount" Show="ShowEditModal" Saved="OnSaved" Hided="OnHided" />
